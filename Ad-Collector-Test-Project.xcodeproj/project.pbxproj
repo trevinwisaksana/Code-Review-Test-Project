@@ -19,6 +19,7 @@
 		DD0841EC20B57E6D00CD7940 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841EB20B57E6D00CD7940 /* MessagesViewController.swift */; };
 		DD0841EE20B58BB800CD7940 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841ED20B58BB800CD7940 /* MessageCell.swift */; };
 		DD0841F020B58D5700CD7940 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD0841EF20B58D5700CD7940 /* Authentication.storyboard */; };
+		DD0841F220B5924B00CD7940 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F120B5924B00CD7940 /* SignInViewController.swift */; };
 		DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */; };
 		DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */; };
 		DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */; };
@@ -84,6 +85,7 @@
 		DD0841EB20B57E6D00CD7940 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		DD0841ED20B58BB800CD7940 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		DD0841EF20B58D5700CD7940 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		DD0841F120B5924B00CD7940 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdViewModel.swift; sourceTree = "<group>"; };
 		DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdCell.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				DDD3DB2A205CB75F000A29B3 /* FavoritesViewController.swift */,
 				DD0841DE20B5169700CD7940 /* DisplayAdViewController.swift */,
 				DD0841EB20B57E6D00CD7940 /* MessagesViewController.swift */,
+				DD0841F120B5924B00CD7940 /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				DDD3DB20205C8FAB000A29B3 /* AdvertisementViewModel.swift in Sources */,
 				DDD3DB0C205C8849000A29B3 /* Advertisement.swift in Sources */,
 				DDD3DB15205C8A03000A29B3 /* UITableView+Utility.swift in Sources */,
+				DD0841F220B5924B00CD7940 /* SignInViewController.swift in Sources */,
 				DD1473F5205D52E000FFFD3C /* AdvertisementCollectionView.swift in Sources */,
 				DD63B481205CD64800A7837E /* AdvertisementCell.swift in Sources */,
 				DD1473FE205D80CD00FFFD3C /* AdvertisementsSectionFooter.swift in Sources */,
