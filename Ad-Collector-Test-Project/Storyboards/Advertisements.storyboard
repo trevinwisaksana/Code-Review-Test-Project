@@ -211,7 +211,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yod-sp-eDL">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yod-sp-eDL">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bEP-pq-EZo">
@@ -253,14 +253,14 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YrW-zR-mVL">
                                                     <rect key="frame" x="20" y="11" width="128" height="93"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="kr 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZE-5l-sCz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="35.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kr 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZE-5l-sCz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="32.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                             <color key="textColor" red="0.41633486749999998" green="0.32971501349999999" blue="0.89039069410000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNT-sj-TLH">
-                                                            <rect key="frame" x="0.0" y="40.5" width="335" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNT-sj-TLH">
+                                                            <rect key="frame" x="0.0" y="37.5" width="335" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -271,13 +271,14 @@
                                                     <rect key="frame" x="20" y="87" width="166" height="21.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_pin_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SJT-8i-aQ0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="23" height="21.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="23" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="23" id="3kR-XE-cIw"/>
+                                                                <constraint firstAttribute="width" secondItem="SJT-8i-aQ0" secondAttribute="height" multiplier="23:21" id="p6Z-dm-IsH"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-x7-A66">
-                                                            <rect key="frame" x="28" y="0.0" width="307" height="21.5"/>
+                                                            <rect key="frame" x="28" y="0.0" width="307" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -292,7 +293,7 @@
                                             <constraint firstItem="YrW-zR-mVL" firstAttribute="top" secondItem="8AB-wA-eSe" secondAttribute="topMargin" constant="3" id="mmA-bD-CP2"/>
                                             <constraint firstItem="6Yb-pe-Mlk" firstAttribute="top" secondItem="YrW-zR-mVL" secondAttribute="bottom" constant="15" id="pJh-ez-EbP"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="YrW-zR-mVL" secondAttribute="trailing" constant="12" id="tfn-Pn-CPp"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="6Yb-pe-Mlk" secondAttribute="bottom" constant="1.5" id="tiz-Jd-RFy"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="6Yb-pe-Mlk" secondAttribute="bottom" constant="5" id="tiz-Jd-RFy"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="6Yb-pe-Mlk" secondAttribute="trailing" constant="12" id="zlo-FS-Mlu"/>
                                         </constraints>
                                         <size key="customSize" width="375" height="118"/>
@@ -312,16 +313,16 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UYU-Ok-JxB">
                                                     <rect key="frame" x="49" y="16" width="137" height="70"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-mq-Sm4">
-                                                            <rect key="frame" x="0.0" y="16.5" width="125" height="30"/>
-                                                            <state key="normal" title="Chat"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-mq-Sm4">
+                                                            <rect key="frame" x="0.0" y="19" width="125" height="25"/>
+                                                            <state key="normal" image="chatIcon(small)"/>
                                                             <connections>
                                                                 <action selector="didPressChatButton:" destination="Cu9-JP-ycD" eventType="touchUpInside" id="xg4-8f-2OO"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmu-zc-j6s">
-                                                            <rect key="frame" x="125" y="16.5" width="125" height="30"/>
-                                                            <state key="normal" title="Share"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmu-zc-j6s">
+                                                            <rect key="frame" x="125" y="19" width="125" height="25"/>
+                                                            <state key="normal" image="shareIcon(small)"/>
                                                             <connections>
                                                                 <action selector="didPressShareButton:" destination="Cu9-JP-ycD" eventType="touchUpInside" id="Ll1-wz-rkZ"/>
                                                             </connections>
@@ -392,8 +393,10 @@
     </scenes>
     <resources>
         <image name="btn_heart_black_outline" width="24" height="24"/>
+        <image name="chatIcon(small)" width="25" height="25"/>
         <image name="closeButtonIcon" width="42" height="42"/>
         <image name="location_pin_icon" width="12" height="12"/>
+        <image name="shareIcon(small)" width="25" height="25"/>
         <image name="tab_home_black" width="25" height="25"/>
     </resources>
 </document>

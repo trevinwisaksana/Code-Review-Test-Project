@@ -84,9 +84,9 @@ extension DisplayAdViewController: UICollectionViewDataSource, UICollectionViewD
         case 0:
             return CGSize(width: view.frame.width, height: view.frame.height * 0.7)
         case 1:
-            return CGSize(width: view.frame.width, height: view.frame.height * 0.18)
+            return CGSize(width: view.frame.width, height: view.frame.height * 0.2)
         case 2:
-            return CGSize(width: view.frame.width, height: view.frame.height * 0.15)
+            return CGSize(width: view.frame.width, height: view.frame.height * 0.1)
         default:
             fatalError("Index Path out of range")
         }
