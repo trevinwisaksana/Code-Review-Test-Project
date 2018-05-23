@@ -232,6 +232,16 @@ extension AdvertisementsViewController: UICollectionViewDelegate, UICollectionVi
         self.collectionView.animateCellEntry(for: cell, at: indexPath)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
+        let displayAdVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayCurrentAd) as! DisplayAdViewController
+        
+        let ad = dataSource.contentData(atIndex: indexPath.row)
+        displayAdVC.dataSource.load(ad)
+        
+        present(displayAdVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension AdvertisementsViewController: AdvertisementDataSourceDelegate {
@@ -246,7 +256,7 @@ extension AdvertisementsViewController: DisplayMoreAdsDelegate {
     
     func pass(section: Int) {
         let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
-        let displaySectionVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayVC) as! DisplaySectionViewController
+        let displaySectionVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displaySectionVC) as! DisplaySectionViewController
         
         let sectionData = dataSource.passData(fromSection: section)
         displaySectionVC.dataSource.loadContent(sectionData)

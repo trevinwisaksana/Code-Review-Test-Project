@@ -28,7 +28,7 @@ final class DisplaySectionViewController: UIViewController {
     
     //---- IBAction ----//
     
-    @IBAction func didTapDoneButton(_ sender: UIButton) {
+    @IBAction func didTapCloseButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     

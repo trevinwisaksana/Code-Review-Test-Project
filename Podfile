@@ -10,6 +10,7 @@ target 'Ad-Collector-Test-Project' do
   pod 'Alamofire', '~> 4.7'
   pod 'SDWebImage'
   pod 'ReachabilitySwift'
+  pod 'Firebase/Core'
 
   target 'Ad-Collector-Test-ProjectTests' do
     inherit! :search_paths

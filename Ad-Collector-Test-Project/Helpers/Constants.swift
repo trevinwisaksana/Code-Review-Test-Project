@@ -15,7 +15,8 @@ struct Constants {
     }
     
     struct Identifier {
-        static let displayVC = "DisplaySectionViewController"
+        static let displaySectionVC = "DisplaySectionViewController"
+        static let displayCurrentAd = "DisplayAdViewController"
     }
     
     struct AdType {
