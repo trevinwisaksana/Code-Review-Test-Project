@@ -236,8 +236,26 @@ extension AdvertisementsViewController: UICollectionViewDelegate, UICollectionVi
         let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
         let displayAdVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayCurrentAd) as! DisplayAdViewController
         
-        let ad = dataSource.contentData(atIndex: indexPath.row)
-        displayAdVC.dataSource.load(ad)
+        var ad: Advertisement?
+        
+        switch indexPath.section {
+        case 0:
+            ad = dataSource.mostPopularContentData(atIndex: indexPath.row)
+        case 1:
+            ad = dataSource.carsContentData(atIndex: indexPath.row)
+        case 2:
+            ad = dataSource.bapContentData(atIndex: indexPath.row)
+        case 3:
+            ad = dataSource.realEstateContentData(atIndex: indexPath.row)
+        default:
+            break
+        }
+        
+        guard let adData = ad else {
+            return
+        }
+        
+        displayAdVC.dataSource.load(adData)
         
         present(displayAdVC, animated: true, completion: nil)
     }
