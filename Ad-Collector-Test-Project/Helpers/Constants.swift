@@ -10,12 +10,19 @@ import Foundation
 
 struct Constants {
     
+    struct UserDefaults {
+        static let currentUser = "currentUser"
+        static let uid = "uid"
+        static let username = "username"
+    }
+    
     struct Storyboard {
         static let advertisements = "Advertisements"
     }
     
     struct Identifier {
-        static let displayVC = "DisplaySectionViewController"
+        static let displaySectionVC = "DisplaySectionViewController"
+        static let displayCurrentAd = "DisplayAdViewController"
     }
     
     struct AdType {

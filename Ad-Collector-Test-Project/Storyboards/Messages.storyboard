@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mp6-SF-dda">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Messages-->
+        <scene sceneID="iST-ZW-Xhg">
+            <objects>
+                <viewController storyboardIdentifier="MessagesViewController" id="RE9-db-6cE" customClass="MessagesViewController" customModule="Ad_Collector_Test_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w1r-oQ-mmS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GlJ-9w-CZc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="72" id="RFg-xR-t8t" customClass="MessageCell" customModule="Ad_Collector_Test_Project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RFg-xR-t8t" id="qbD-kt-Ne3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="RE9-db-6cE" id="m7F-5u-f7R"/>
+                                    <outlet property="delegate" destination="RE9-db-6cE" id="KXc-GZ-iT1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GlJ-9w-CZc" firstAttribute="trailing" secondItem="XcM-6g-tPK" secondAttribute="trailing" id="Kfs-rE-opR"/>
+                            <constraint firstAttribute="bottom" secondItem="GlJ-9w-CZc" secondAttribute="bottom" id="L0B-Vw-iW0"/>
+                            <constraint firstItem="GlJ-9w-CZc" firstAttribute="top" secondItem="w1r-oQ-mmS" secondAttribute="top" id="jgL-3c-zLX"/>
+                            <constraint firstItem="GlJ-9w-CZc" firstAttribute="leading" secondItem="XcM-6g-tPK" secondAttribute="leading" id="uje-5Q-CEP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XcM-6g-tPK"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Messages" id="dW7-cG-RAr"/>
+                    <connections>
+                        <outlet property="tableView" destination="GlJ-9w-CZc" id="Sef-p1-DEn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8p-5Q-9Ri" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="813.60000000000002" y="892.80359820089961"/>
+        </scene>
+        <!--Messages-->
+        <scene sceneID="HkP-rT-7qc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mp6-SF-dda" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Messages" image="chatIcon(small)" id="CKb-tx-Uev"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rZo-ei-4pZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RE9-db-6cE" kind="relationship" relationship="rootViewController" id="9CO-Lb-VEf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wjy-wr-8jX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="893"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chatIcon(small)" width="25" height="25"/>
+    </resources>
+</document>

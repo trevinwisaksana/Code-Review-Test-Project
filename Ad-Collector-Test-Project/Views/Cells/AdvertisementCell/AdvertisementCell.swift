@@ -13,6 +13,7 @@ protocol Likeable: class {
     func didTapLikeButton(_ likeButton: UIButton, on cell: AdvertisementCell)
 }
 
+
 final class AdvertisementCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!

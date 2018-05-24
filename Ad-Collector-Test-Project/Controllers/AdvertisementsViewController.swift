@@ -232,6 +232,34 @@ extension AdvertisementsViewController: UICollectionViewDelegate, UICollectionVi
         self.collectionView.animateCellEntry(for: cell, at: indexPath)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
+        let displayAdVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayCurrentAd) as! DisplayAdViewController
+        
+        var ad: Advertisement?
+        
+        switch indexPath.section {
+        case 0:
+            ad = dataSource.mostPopularContentData(atIndex: indexPath.row)
+        case 1:
+            ad = dataSource.carsContentData(atIndex: indexPath.row)
+        case 2:
+            ad = dataSource.bapContentData(atIndex: indexPath.row)
+        case 3:
+            ad = dataSource.realEstateContentData(atIndex: indexPath.row)
+        default:
+            break
+        }
+        
+        guard let adData = ad else {
+            return
+        }
+        
+        displayAdVC.dataSource.load(adData)
+        
+        present(displayAdVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension AdvertisementsViewController: AdvertisementDataSourceDelegate {
@@ -246,7 +274,7 @@ extension AdvertisementsViewController: DisplayMoreAdsDelegate {
     
     func pass(section: Int) {
         let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
-        let displaySectionVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayVC) as! DisplaySectionViewController
+        let displaySectionVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displaySectionVC) as! DisplaySectionViewController
         
         let sectionData = dataSource.passData(fromSection: section)
         displaySectionVC.dataSource.loadContent(sectionData)
