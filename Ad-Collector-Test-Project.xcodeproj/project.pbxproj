@@ -21,6 +21,8 @@
 		DD0841F020B58D5700CD7940 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD0841EF20B58D5700CD7940 /* Authentication.storyboard */; };
 		DD0841F220B5924B00CD7940 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F120B5924B00CD7940 /* SignInViewController.swift */; };
 		DD0841F420B5A2E400CD7940 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F320B5A2E400CD7940 /* User.swift */; };
+		DD0841F620B65A6000CD7940 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F520B65A6000CD7940 /* UserService.swift */; };
+		DD0841F820B65B7000CD7940 /* DatabaseReference+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */; };
 		DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */; };
 		DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */; };
 		DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */; };
@@ -88,6 +90,8 @@
 		DD0841EF20B58D5700CD7940 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		DD0841F120B5924B00CD7940 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD0841F320B5A2E400CD7940 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DD0841F520B65A6000CD7940 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseReference+Location.swift"; sourceTree = "<group>"; };
 		DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdViewModel.swift; sourceTree = "<group>"; };
 		DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdCell.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 		DDD3DB0F205C8903000A29B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DD0841F520B65A6000CD7940 /* UserService.swift */,
 				DDD3DB25205C90C8000A29B3 /* AdvertisementService.swift */,
 				DD1473EF205D205E00FFFD3C /* LikeService.swift */,
 			);
@@ -315,6 +320,7 @@
 		DDD3DB16205C8A09000A29B3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */,
 				DD63B47E205CD4B800A7837E /* UICollectionView+Utility.swift */,
 				DDD3DB14205C8A02000A29B3 /* UITableView+Utility.swift */,
 				DD5A9867205F71BC005C00D1 /* Int+Commas.swift */,
@@ -587,11 +593,13 @@
 				DD1473EC205D094100FFFD3C /* FavoriteAd.xcdatamodeld in Sources */,
 				DDD3DAE3205C853D000A29B3 /* AppDelegate.swift in Sources */,
 				DD0841E120B51E7A00CD7940 /* DisplayAdViewModel.swift in Sources */,
+				DD0841F820B65B7000CD7940 /* DatabaseReference+Location.swift in Sources */,
 				DD0841EE20B58BB800CD7940 /* MessageCell.swift in Sources */,
 				DD5A9868205F71BC005C00D1 /* Int+Commas.swift in Sources */,
 				DD147400205D84C000FFFD3C /* DisplaySectionViewController.swift in Sources */,
 				DD0841E520B549A400CD7940 /* AdCaptionCell.swift in Sources */,
 				DDD3DB26205C90C8000A29B3 /* AdvertisementService.swift in Sources */,
+				DD0841F620B65A6000CD7940 /* UserService.swift in Sources */,
 				DDD3DB18205C8BAD000A29B3 /* AdvertisementsViewController.swift in Sources */,
 				DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */,
 				DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */,

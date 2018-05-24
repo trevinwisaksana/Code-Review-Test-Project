@@ -11,6 +11,8 @@ target 'Ad-Collector-Test-Project' do
   pod 'SDWebImage'
   pod 'ReachabilitySwift'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
 
   target 'Ad-Collector-Test-ProjectTests' do
     inherit! :search_paths
