@@ -13,6 +13,7 @@ target 'Ad-Collector-Test-Project' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
 
   target 'Ad-Collector-Test-ProjectTests' do
     inherit! :search_paths

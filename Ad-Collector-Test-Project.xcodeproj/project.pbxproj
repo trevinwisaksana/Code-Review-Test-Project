@@ -23,6 +23,10 @@
 		DD0841F420B5A2E400CD7940 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F320B5A2E400CD7940 /* User.swift */; };
 		DD0841F620B65A6000CD7940 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F520B65A6000CD7940 /* UserService.swift */; };
 		DD0841F820B65B7000CD7940 /* DatabaseReference+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */; };
+		DD08420320B9389E00CD7940 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08420020B9389D00CD7940 /* PostService.swift */; };
+		DD08420920B93D7400CD7940 /* StorageReference+Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08420820B93D7400CD7940 /* StorageReference+Post.swift */; };
+		DD08420B20B93DF900CD7940 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08420A20B93DF900CD7940 /* StorageService.swift */; };
+		DD08420D20B93E2800CD7940 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08420C20B93E2800CD7940 /* UIImage+Size.swift */; };
 		DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */; };
 		DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */; };
 		DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */; };
@@ -92,6 +96,10 @@
 		DD0841F320B5A2E400CD7940 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DD0841F520B65A6000CD7940 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseReference+Location.swift"; sourceTree = "<group>"; };
+		DD08420020B9389D00CD7940 /* PostService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		DD08420820B93D7400CD7940 /* StorageReference+Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StorageReference+Post.swift"; sourceTree = "<group>"; };
+		DD08420A20B93DF900CD7940 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageService.swift; path = "../../../../../../Make School Philippines/Operations/Training/Makestagram/Makestagram/Services/StorageService.swift"; sourceTree = "<group>"; };
+		DD08420C20B93E2800CD7940 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdViewModel.swift; sourceTree = "<group>"; };
 		DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdCell.swift; sourceTree = "<group>"; };
@@ -310,6 +318,8 @@
 		DDD3DB0F205C8903000A29B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DD08420A20B93DF900CD7940 /* StorageService.swift */,
+				DD08420020B9389D00CD7940 /* PostService.swift */,
 				DD0841F520B65A6000CD7940 /* UserService.swift */,
 				DDD3DB25205C90C8000A29B3 /* AdvertisementService.swift */,
 				DD1473EF205D205E00FFFD3C /* LikeService.swift */,
@@ -320,6 +330,8 @@
 		DDD3DB16205C8A09000A29B3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DD08420C20B93E2800CD7940 /* UIImage+Size.swift */,
+				DD08420820B93D7400CD7940 /* StorageReference+Post.swift */,
 				DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */,
 				DD63B47E205CD4B800A7837E /* UICollectionView+Utility.swift */,
 				DDD3DB14205C8A02000A29B3 /* UITableView+Utility.swift */,
@@ -582,8 +594,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */,
+				DD08420920B93D7400CD7940 /* StorageReference+Post.swift in Sources */,
 				DD147408205DACEF00FFFD3C /* Constants.swift in Sources */,
 				DD14740D205DBB8F00FFFD3C /* ReachabilityHelper.swift in Sources */,
+				DD08420320B9389E00CD7940 /* PostService.swift in Sources */,
+				DD08420B20B93DF900CD7940 /* StorageService.swift in Sources */,
 				DD0841DF20B5169700CD7940 /* DisplayAdViewController.swift in Sources */,
 				DD0841F420B5A2E400CD7940 /* User.swift in Sources */,
 				DDD3DB2B205CB75F000A29B3 /* FavoritesViewController.swift in Sources */,
@@ -607,6 +622,7 @@
 				DD0841EC20B57E6D00CD7940 /* MessagesViewController.swift in Sources */,
 				DDD3DB20205C8FAB000A29B3 /* AdvertisementViewModel.swift in Sources */,
 				DDD3DB0C205C8849000A29B3 /* Advertisement.swift in Sources */,
+				DD08420D20B93E2800CD7940 /* UIImage+Size.swift in Sources */,
 				DDD3DB15205C8A03000A29B3 /* UITableView+Utility.swift in Sources */,
 				DD0841F220B5924B00CD7940 /* SignInViewController.swift in Sources */,
 				DD1473F5205D52E000FFFD3C /* AdvertisementCollectionView.swift in Sources */,
