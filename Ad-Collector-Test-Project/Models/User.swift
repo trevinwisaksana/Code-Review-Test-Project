@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import CoreData
 
 final class User: NSObject {
     

@@ -36,12 +36,29 @@ final class DisplayAdViewModel {
     
     //---- Like Service ----//
     
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
+    func setLikeStatus(for ad: Advertisement) {
+        let connection = likeService.newConnection()
+        likeService.fetchAd(withKey: ad.key, connection: connection) { (advertisement) in
+            if advertisement == nil {
+                self.removeLike(for: ad)
+            } else {
+                self.likeAdvertisement(for: ad)
+            }
+        }
+    }
+    
+    func removeLike(for ad: Advertisement) {
+        let connection = likeService.newConnection()
+        likeService.removeLike(for: ad, connection: connection) { (success) in
+            print("Sucessfully removed like: \(success)")
+        }
     }
     
     func likeAdvertisement(for ad: Advertisement) {
-        likeService.saveToFavorite(ad)
+        let connection = likeService.newConnection()
+        likeService.like(favoriteAd: ad, connection: connection) { (success) in
+            print("Sucessfully liked ad: \(success)")
+        }
     }
     
 }

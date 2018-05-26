@@ -23,7 +23,7 @@ final class FavoriteAdCell: UITableViewCell {
     
     weak var delegate: Dislikeable?
     
-    func configure(_ data: FavoriteAd) {
+    func configure(_ data: Advertisement) {
         descriptionLabel.text = data.title
         priceLabel.text = "kr " + Int(data.price).decimalStyleString
         locationLabel.text = data.location

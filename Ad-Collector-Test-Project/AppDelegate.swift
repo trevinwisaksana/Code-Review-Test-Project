@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 import Firebase
 
+/// Global instance of the database
+let database = YapDatabase(path: Constants.Database.path)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

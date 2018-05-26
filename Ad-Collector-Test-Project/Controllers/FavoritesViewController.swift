@@ -51,8 +51,7 @@ final class FavoritesViewController: UIViewController {
         tableView.register(FavoriteAdCell.self)
     }
     
-    @objc
-    private func reloadTimeline() {
+    func reloadTimeline() {
         dataSource.fetchFavoriteAds()
     }
     
@@ -102,6 +101,10 @@ extension FavoritesViewController: AdvertisementDataSourceDelegate {
         tableView.reloadData()
     }
     
+    func cellContentChange(at indexPath: IndexPath) {
+        
+    }
+    
 }
 
 extension FavoritesViewController: Dislikeable {
@@ -119,7 +122,6 @@ extension FavoritesViewController: Dislikeable {
         }
         
         let adDisliked = dataSource.data(atIndex: indexPath.row)
-        
         dataSource.removeLike(for: adDisliked)
         
         reloadTimeline()

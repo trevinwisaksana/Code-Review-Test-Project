@@ -100,6 +100,10 @@ extension DisplaySectionViewController: AdvertisementDataSourceDelegate {
         collectionView.reloadData()
     }
     
+    func cellContentChange(at indexPath: IndexPath) {
+        
+    }
+    
 }
 
 extension DisplaySectionViewController: Likeable {
@@ -116,14 +120,8 @@ extension DisplaySectionViewController: Likeable {
             return
         }
         
-        let adLiked = dataSource.data(atIndex: indexPath.row)
-        
-        if let favoritedAd = CoreDataHelper.fetchSelectedFavoriteAd(withKey: adLiked.key) {
-            dataSource.removeLike(for: favoritedAd)
-        } else {
-            dataSource.likeAdvertisement(for: adLiked)
-        }
-        
+        let adSelected = dataSource.data(atIndex: indexPath.row)
+        dataSource.setLikeStatus(for: adSelected)
     }
     
 }

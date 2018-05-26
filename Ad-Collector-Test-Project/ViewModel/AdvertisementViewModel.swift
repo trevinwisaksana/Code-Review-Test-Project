@@ -10,6 +10,7 @@ import Foundation
 
 protocol AdvertisementDataSourceDelegate: class {
     func contentChange()
+    func cellContentChange(at indexPath: IndexPath)
 }
 
 final class AdvertisementViewModel {
@@ -197,12 +198,35 @@ final class AdvertisementViewModel {
     
     //---- Like Service ----//
     
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
+    func setLikeStatus(for ad: Advertisement, at indexPath: IndexPath) {
+        let connection = likeService.newConnection()
+        likeService.fetchAd(withKey: ad.key, connection: connection) { (advertisement) in
+            if advertisement == nil {
+                self.likeAdvertisement(for: ad, at: indexPath)
+            } else {
+                self.removeLike(for: ad, at: indexPath)
+            }
+        }
     }
     
-    func likeAdvertisement(for ad: Advertisement?) {
-        likeService.saveToFavorite(ad)
+    func removeLike(for ad: Advertisement, at indexPath: IndexPath) {
+        let connection = likeService.newConnection()
+        
+        ad.isFavorite = false
+        likeService.removeLike(for: ad, connection: connection) { (success) in
+//            self.delegate?.cellContentChange(at: indexPath)
+            self.delegate?.contentChange()
+        }
+    }
+    
+    func likeAdvertisement(for ad: Advertisement, at indexPath: IndexPath) {
+        let connection = likeService.newConnection()
+        
+        ad.isFavorite = true
+        likeService.like(favoriteAd: ad, connection: connection) { (success) in
+//            self.delegate?.cellContentChange(at: indexPath)
+            self.delegate?.contentChange()
+        }
     }
     
 }

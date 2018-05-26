@@ -8,13 +8,12 @@
 
 import Foundation
 import SwiftyJSON
-import CoreData
 
-final class Advertisement {
-
+final class Advertisement: NSObject, NSCoding {
+    
     var title: String
     var price: Int
-    var photoURL: String
+    var photoURL: String?
     var location: String
     var key: String
     var type: String
@@ -57,6 +56,28 @@ final class Advertisement {
         self.key = key
         self.type = adType
         self.score = score
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: "title")
+        aCoder.encode(price, forKey: "price")
+        aCoder.encode(photoURL, forKey: "photoURL")
+        aCoder.encode(location, forKey: "location")
+        aCoder.encode(key, forKey: "key")
+        aCoder.encode(type, forKey: "type")
+        aCoder.encode(score, forKey: "score")
+        aCoder.encode(isFavorite, forKey: "isFavorite")
+    }
+    
+    init?(coder aDecoder: NSCoder) {
+        title = aDecoder.decodeObject(forKey: "title") as! String
+        price = aDecoder.decodeInteger(forKey: "price")
+        photoURL = aDecoder.decodeObject(forKey: "photoURL") as? String
+        location = aDecoder.decodeObject(forKey: "location") as! String
+        key = aDecoder.decodeObject(forKey: "key") as! String
+        type = aDecoder.decodeObject(forKey: "type") as! String
+        score = aDecoder.decodeDouble(forKey: "score")
+        isFavorite = aDecoder.decodeBool(forKey: "isFavorite")
     }
 
 }

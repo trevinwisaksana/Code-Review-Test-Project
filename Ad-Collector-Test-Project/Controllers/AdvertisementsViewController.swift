@@ -268,6 +268,10 @@ extension AdvertisementsViewController: AdvertisementDataSourceDelegate {
         collectionView.reloadData()
     }
     
+    func cellContentChange(at indexPath: IndexPath) {
+        collectionView.reloadItems(at: [indexPath])
+    }
+    
 }
 
 extension AdvertisementsViewController: DisplayMoreAdsDelegate {
@@ -313,10 +317,8 @@ extension AdvertisementsViewController: Likeable {
             break
         }
         
-        if let key = adLiked?.key, let favoritedAd = CoreDataHelper.fetchSelectedFavoriteAd(withKey: key) {
-            dataSource.removeLike(for: favoritedAd)
-        } else {
-            dataSource.likeAdvertisement(for: adLiked)
+        if let adLiked = adLiked {
+            dataSource.setLikeStatus(for: adLiked, at: indexPath)
         }
     }
     

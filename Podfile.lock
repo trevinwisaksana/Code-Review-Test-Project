@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (4.7.0)
+  - CocoaLumberjack (3.4.2):
+    - CocoaLumberjack/Default (= 3.4.2)
+    - CocoaLumberjack/Extensions (= 3.4.2)
+  - CocoaLumberjack/Default (3.4.2)
+  - CocoaLumberjack/Extensions (3.4.2):
+    - CocoaLumberjack/Default
   - Firebase/Auth (4.13.0):
     - Firebase/Core
     - FirebaseAuth (= 4.6.1)
@@ -48,6 +54,66 @@ PODS:
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
   - SwiftyJSON (4.0.0)
+  - YapDatabase (3.0.2):
+    - YapDatabase/Standard (= 3.0.2)
+  - YapDatabase/Standard (3.0.2):
+    - YapDatabase/Standard/Core (= 3.0.2)
+    - YapDatabase/Standard/Extensions (= 3.0.2)
+  - YapDatabase/Standard/Core (3.0.2):
+    - CocoaLumberjack
+  - YapDatabase/Standard/Extensions (3.0.2):
+    - YapDatabase/Standard/Core
+    - YapDatabase/Standard/Extensions/ActionManager (= 3.0.2)
+    - YapDatabase/Standard/Extensions/AutoView (= 3.0.2)
+    - YapDatabase/Standard/Extensions/CloudCore (= 3.0.2)
+    - YapDatabase/Standard/Extensions/CloudKit (= 3.0.2)
+    - YapDatabase/Standard/Extensions/ConnectionProxy (= 3.0.2)
+    - YapDatabase/Standard/Extensions/CrossProcessNotification (= 3.0.2)
+    - YapDatabase/Standard/Extensions/FilteredView (= 3.0.2)
+    - YapDatabase/Standard/Extensions/FullTextSearch (= 3.0.2)
+    - YapDatabase/Standard/Extensions/Hooks (= 3.0.2)
+    - YapDatabase/Standard/Extensions/ManualView (= 3.0.2)
+    - YapDatabase/Standard/Extensions/Relationships (= 3.0.2)
+    - YapDatabase/Standard/Extensions/RTreeIndex (= 3.0.2)
+    - YapDatabase/Standard/Extensions/SearchResultsView (= 3.0.2)
+    - YapDatabase/Standard/Extensions/SecondaryIndex (= 3.0.2)
+    - YapDatabase/Standard/Extensions/View (= 3.0.2)
+  - YapDatabase/Standard/Extensions/ActionManager (3.0.2):
+    - YapDatabase/Standard/Core
+    - YapDatabase/Standard/Extensions/AutoView
+  - YapDatabase/Standard/Extensions/AutoView (3.0.2):
+    - YapDatabase/Standard/Core
+    - YapDatabase/Standard/Extensions/View
+  - YapDatabase/Standard/Extensions/CloudCore (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/CloudKit (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/ConnectionProxy (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/CrossProcessNotification (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/FilteredView (3.0.2):
+    - YapDatabase/Standard/Core
+    - YapDatabase/Standard/Extensions/View
+  - YapDatabase/Standard/Extensions/FullTextSearch (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/Hooks (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/ManualView (3.0.2):
+    - YapDatabase/Standard/Core
+    - YapDatabase/Standard/Extensions/View
+  - YapDatabase/Standard/Extensions/Relationships (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/RTreeIndex (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/SearchResultsView (3.0.2):
+    - YapDatabase/Standard/Core
+    - YapDatabase/Standard/Extensions/AutoView
+    - YapDatabase/Standard/Extensions/FullTextSearch
+  - YapDatabase/Standard/Extensions/SecondaryIndex (3.0.2):
+    - YapDatabase/Standard/Core
+  - YapDatabase/Standard/Extensions/View (3.0.2):
+    - YapDatabase/Standard/Core
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -57,9 +123,11 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SDWebImage
   - SwiftyJSON
+  - YapDatabase
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
   FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
   FirebaseAuth: bf22cacf22c60ab454bf2636f556d8892b10b53f
@@ -73,7 +141,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  YapDatabase: 299a32de9d350d37a9ac5b0532609d87d5d2a5de
 
-PODFILE CHECKSUM: 4331569084edf78bd238801d727df5e3c5d8aa2f
+PODFILE CHECKSUM: 646128830ba132746a5849773d74b7bf561864b5
 
 COCOAPODS: 1.2.1

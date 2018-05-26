@@ -35,4 +35,16 @@ struct Constants {
         static let placeholderImage = "placeholderImage"
     }
     
+    struct Database {
+        private static let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+        private static let baseDir = paths.count > 0 ? paths[0] as String : NSTemporaryDirectory() as String
+        
+        static let path = baseDir + "YapDatabase.sqlite"
+    }
+    
+    struct Collection {
+        static let favoriteAd = "FavoriteAd"
+        
+    }
+    
 }

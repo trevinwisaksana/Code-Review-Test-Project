@@ -28,16 +28,21 @@ final class AdvertisementCell: UICollectionViewCell {
     private var adKey: String?
     
     func configure(_ data: Advertisement) {
-        if let isFavorite = UserDefaults.standard.object(forKey: "\(data.key)") as! Bool? {
-            likeButton.isSelected = isFavorite
-        }
+        
+        likeButton.isSelected = data.isFavorite
+        
+//        if let isFavorite = UserDefaults.standard.object(forKey: "\(data.key)") as! Bool? {
+//            likeButton.isSelected = isFavorite
+//        }
         
         adKey = data.key
         titleLabel.text = data.title
         locationLabel.text = data.location
         priceLabel.text = "kr " + Int(data.price).decimalStyleString
         
-        configureImage(withURL: data.photoURL)
+        if let photoURL = data.photoURL {
+            configureImage(withURL: photoURL)
+        }
     }
     
     private func configureImage(withURL url: String) {
