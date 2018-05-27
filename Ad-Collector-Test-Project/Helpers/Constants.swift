@@ -16,6 +16,10 @@ struct Constants {
         static let username = "username"
     }
     
+    struct ViewController {
+        static let createUsernameVC = "CreateUsernameVC"
+    }
+    
     struct Storyboard {
         static let advertisements = "Advertisements"
     }

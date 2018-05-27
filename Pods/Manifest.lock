@@ -33,6 +33,8 @@ PODS:
     - FirebaseAnalytics (~> 4.1)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Auth (4.5.5):
+    - Firebase/Auth (~> 4.2)
   - GoogleToolboxForMac/DebugUtils (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GoogleToolboxForMac/Defines (2.1.4)
@@ -62,6 +64,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - FirebaseUI/Auth
   - ReachabilitySwift
   - SDWebImage
   - SwiftyJSON
@@ -75,6 +78,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 5f0bc6134c5c237cf55f9e1249d406770a75eafd
   FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
   FirebaseStorage: 0c223481c8f89ed300cf1239ddd2d9833622c65f
+  FirebaseUI: 7f149d40db1a67c459df16540256b66d8f8e8c70
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
@@ -83,6 +87,6 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 1e465e507798bf8e3e6acd927ffc1888db41fbc5
+PODFILE CHECKSUM: eb987ba997fb1af20083f06d84fd0d54488bb7a6
 
 COCOAPODS: 1.2.1

@@ -18,7 +18,9 @@ final class AdImageCell: UICollectionViewCell {
     //---- Configuration Methods ----//
     
     func configure(_ data: Advertisement) {
-        configureImage(withURL: data.photoURL)
+        if let posterURL = data.posterURL  {
+            configureImage(withURL: posterURL)
+        }
     }
     
     private func configureImage(withURL url: String) {

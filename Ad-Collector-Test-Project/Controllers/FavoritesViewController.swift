@@ -118,11 +118,17 @@ extension FavoritesViewController: Dislikeable {
             return
         }
         
-        let adDisliked = dataSource.data(atIndex: indexPath.row)
+        let ad = dataSource.data(atIndex: indexPath.row)
         
-        dataSource.removeLike(for: adDisliked)
-        
-        reloadTimeline()
+        dataSource.adIsLiked(status: !ad.isLiked, for: ad) { (success) in
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? FavoriteAdCell else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                cell.configure(ad)
+            }
+        }
     }
     
 }

@@ -25,7 +25,7 @@ final class FavoriteAdViewModel {
     
     //---- Data Source ----//
     
-    private var content = CoreDataHelper.retrieveFavoriteAds() {
+    private var content = [Advertisement]() {
         didSet {
             delegate?.contentChange()
         }
@@ -39,18 +39,20 @@ final class FavoriteAdViewModel {
         return content.isEmpty
     }
     
-    func data(atIndex index: Int) -> FavoriteAd {
+    func data(atIndex index: Int) -> Advertisement {
         return content[index]
     }
     
     func fetchFavoriteAds() {
-        content = CoreDataHelper.retrieveFavoriteAds()
+        
     }
     
     //---- Like Service ----//
     
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
+    func adIsLiked(status: Bool, for ad: Advertisement, success: @escaping (Bool) -> Void) {
+        likeService.setIsLiked(status, for: ad) { (isSuccessful) in
+            success(isSuccessful)
+        }
     }
     
 }

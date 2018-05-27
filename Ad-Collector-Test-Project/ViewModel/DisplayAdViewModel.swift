@@ -36,12 +36,9 @@ final class DisplayAdViewModel {
     
     //---- Like Service ----//
     
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
+    func adIsLiked(status: Bool, for ad: Advertisement, success: @escaping (Bool) -> Void) {
+        likeService.setIsLiked(status, for: ad) { (isSuccessful) in
+            success(isSuccessful)
+        }
     }
-    
-    func likeAdvertisement(for ad: Advertisement) {
-        likeService.saveToFavorite(ad)
-    }
-    
 }

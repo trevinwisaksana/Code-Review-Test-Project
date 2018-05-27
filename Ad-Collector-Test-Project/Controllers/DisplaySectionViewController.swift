@@ -116,12 +116,16 @@ extension DisplaySectionViewController: Likeable {
             return
         }
         
-        let adLiked = dataSource.data(atIndex: indexPath.row)
+        let ad = dataSource.data(atIndex: indexPath.row)
         
-        if let favoritedAd = CoreDataHelper.fetchSelectedFavoriteAd(withKey: adLiked.key) {
-            dataSource.removeLike(for: favoritedAd)
-        } else {
-            dataSource.likeAdvertisement(for: adLiked)
+        dataSource.adIsLiked(status: !ad.isLiked, for: ad) { (success) in
+            guard let cell = self.collectionView.cellForItem(at: indexPath) as? AdvertisementCell else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                cell.configure(ad)
+            }
         }
         
     }
