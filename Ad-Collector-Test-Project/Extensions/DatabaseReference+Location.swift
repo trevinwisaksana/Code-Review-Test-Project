@@ -14,7 +14,7 @@ extension DatabaseReference {
     enum MGLocation {
         case root
         
-        case posts(uid: String)
+        case ads(uid: String)
         case fetchPost(uid: String, postKey: String)
         case newPost(currentUID: String)
         
@@ -35,8 +35,8 @@ extension DatabaseReference {
             case .root:
                 return root
                 
-            case .posts(let uid):
-                return root.child("posts").child(uid)
+            case .ads(let uid):
+                return root.child("items").child(uid)
                 
             case let .fetchPost(uid, postKey):
                 return root.child("posts").child(uid).child(postKey)

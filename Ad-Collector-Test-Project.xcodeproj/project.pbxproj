@@ -29,6 +29,7 @@
 		DD08421320B96BD100CD7940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD08421020B9626700CD7940 /* GoogleService-Info.plist */; };
 		DD08421520B96F3000CD7940 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08421420B96F3000CD7940 /* Storyboard+Utility.swift */; };
 		DD08421720BA747300CD7940 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08421620BA747300CD7940 /* CreateUsernameViewController.swift */; };
+		DD08421920BA7A7C00CD7940 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD08421820BA7A7C00CD7940 /* PostService.swift */; };
 		DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */; };
 		DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */; };
 		DD1473E7205CFD6B00FFFD3C /* FavoriteAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1473E6205CFD6B00FFFD3C /* FavoriteAdCell.xib */; };
@@ -101,6 +102,7 @@
 		DD08421020B9626700CD7940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD08421420B96F3000CD7940 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
 		DD08421620BA747300CD7940 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
+		DD08421820BA7A7C00CD7940 /* PostService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdViewModel.swift; sourceTree = "<group>"; };
 		DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdCell.swift; sourceTree = "<group>"; };
 		DD1473E6205CFD6B00FFFD3C /* FavoriteAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteAdCell.xib; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		DDD3DB0F205C8903000A29B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DD08421820BA7A7C00CD7940 /* PostService.swift */,
 				DD0841F520B65A6000CD7940 /* UserService.swift */,
 				DD08420A20B93DF900CD7940 /* StorageService.swift */,
 				DD1473EF205D205E00FFFD3C /* LikeService.swift */,
@@ -625,6 +628,7 @@
 				DD08421720BA747300CD7940 /* CreateUsernameViewController.swift in Sources */,
 				DD63B481205CD64800A7837E /* AdvertisementCell.swift in Sources */,
 				DD1473FE205D80CD00FFFD3C /* AdvertisementsSectionFooter.swift in Sources */,
+				DD08421920BA7A7C00CD7940 /* PostService.swift in Sources */,
 				DD63B47F205CD4B800A7837E /* UICollectionView+Utility.swift in Sources */,
 				DD08421520B96F3000CD7940 /* Storyboard+Utility.swift in Sources */,
 				DD0841E320B5492600CD7940 /* AdImageCell.swift in Sources */,

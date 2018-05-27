@@ -48,8 +48,9 @@ struct UserService {
         })
     }
     
-//    func posts(for user: User, completion: @escaping ([Post]) -> Void) {
-//        let ref = DatabaseReference.toLocation(.posts(uid: user.uid))
+//    func posts(for user: User, completion: @escaping ([Advertisement]) -> Void) {
+//
+//        let ref = DatabaseReference.toLocation(.ads(uid: user.uid))
 //
 //        ref.observeSingleEvent(of: .value, with: { (snapshot) in
 //
@@ -59,133 +60,38 @@ struct UserService {
 //
 //            let dispatchGroup = DispatchGroup()
 //
-//            let posts: [Post] = snapshot.reversed().compactMap {
-//                guard let post = Post(snapshot: $0) else { return nil }
+//            let ads: [Advertisement] = snapshot.reversed().compactMap {
+//                guard let ad = Advertisement(snapshot: $0) else { return nil }
 //                dispatchGroup.enter()
 //
-//                LikeService.isPostLiked(post) { (isLiked) in
-//                    post.isLiked = isLiked
+//                LikeService.isPostLiked(ad) { (isLiked) in
+//                    ad.isLiked = isLiked
 //                    dispatchGroup.leave()
 //                }
-//                return post
+//                return ad
 //            }
 //
 //            dispatchGroup.notify(queue: .main, execute: {
-//                completion(posts)
+//                completion(ads)
 //            })
 //        })
+//
 //    }
     
-//    func usersExcludingCurrentUser(completion: @escaping ([User]) -> Void) {
+//    func modifyDataKeys() {
+//        for i in 1...999 {
+//            let ref = databaseReference.child("items").child("\(i)")
 //
-//        let ref = DatabaseReference.toLocation(.users)
-//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot]
-//                else { return completion([]) }
+//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
 //
-//            let users = snapshot.compactMap(User.init).filter {
-//                $0.uid != currentUser.uid
-//            }
-//
-//            let dispatchGroup = DispatchGroup()
-//            users.forEach { (user) in
-//                dispatchGroup.enter()
-//
-//                FollowService.isUserFollowed(user) { (isFollowed) in
-//                    user.isFollowed = isFollowed
-//                    dispatchGroup.leave()
+//                guard let snapshot = snapshot.value else {
+//                    return
 //                }
-//            }
 //
-//            dispatchGroup.notify(queue: .main, execute: {
-//                completion(users)
+//                self.databaseReference.child("items").childByAutoId().setValue(snapshot)
+//                ref.removeValue()
 //            })
-//        })
-//    }
-    
-//    func followers(for user: User, completion: @escaping ([String]) -> Void) {
-//        let followersRef = DatabaseReference.toLocation(.followers(uid: currentUID))
-//
-//        followersRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//            guard let followersDict = snapshot.value as? [String : Bool] else {
-//                return completion([])
-//            }
-//
-//            let followersKeys = Array(followersDict.keys)
-//            completion(followersKeys)
-//        })
-//    }
-    
-//    func timeline(pageSize: UInt, lastPostKey: String? = nil, completion: @escaping ([Post]) -> Void) {
-//
-//        let ref = DatabaseReference.toLocation(.timeline(uid: currentUID))
-//        var query = ref.queryOrderedByKey().queryLimited(toLast: pageSize)
-//        if let lastPostKey = lastPostKey {
-//            query = query.queryEnding(atValue: lastPostKey)
 //        }
-//
-//        query.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot]
-//                else { return completion([]) }
-//
-//            let dispatchGroup = DispatchGroup()
-//
-//            var posts = [Post]()
-//
-//            for postSnap in snapshot {
-//                guard let postDict = postSnap.value as? [String : Any],
-//                    let posterUID = postDict["poster_uid"] as? String
-//                    else { continue }
-//
-//                dispatchGroup.enter()
-//
-//                PostService.fetchPost(withKey: postSnap.key, posterUID: posterUID, completion: { (post) in
-//                    if let post = post {
-//                        posts.append(post)
-//                    }
-//
-//                    dispatchGroup.leave()
-//                })
-//
-//            }
-//
-//            dispatchGroup.notify(queue: .main, execute: {
-//                completion(posts.reversed())
-//            })
-//        })
-//    }
-    
-    //----- Chat -----//
-    
-//    func following(for user: User = User.current, completion: @escaping ([User]) -> Void) {
-//
-//        let followingRef = Database.database().reference().child("following").child(user.uid)
-//        followingRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            guard let followingDict = snapshot.value as? [String : Bool] else {
-//                return completion([])
-//            }
-//
-//            var following = [User]()
-//            let dispatchGroup = DispatchGroup()
-//
-//            for uid in followingDict.keys {
-//                dispatchGroup.enter()
-//
-//                self.show(forUID: uid) { user in
-//                    if let user = user {
-//                        following.append(user)
-//                    }
-//
-//                    dispatchGroup.leave()
-//                }
-//            }
-//
-//            dispatchGroup.notify(queue: .main) {
-//                completion(following)
-//            }
-//        })
 //    }
     
 }
