@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class AdvertisementService {
     
+    // TODO: Change to fetch from Firebase 
+    
     private let baseURL = URL(string: "https://gist.githubusercontent.com/3lvis/3799feea005ed49942dcb56386ecec2b/raw/63249144485884d279d55f4f3907e37098f55c74/discover.json")
     
     func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
