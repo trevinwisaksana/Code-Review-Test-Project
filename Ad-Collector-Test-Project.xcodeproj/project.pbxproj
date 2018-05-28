@@ -15,10 +15,7 @@
 		DD0841E320B5492600CD7940 /* AdImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E220B5492600CD7940 /* AdImageCell.swift */; };
 		DD0841E520B549A400CD7940 /* AdCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E420B549A400CD7940 /* AdCaptionCell.swift */; };
 		DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E620B549E900CD7940 /* AdActionCell.swift */; };
-		DD0841EA20B5760300CD7940 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD0841E920B5760300CD7940 /* Messages.storyboard */; };
-		DD0841EC20B57E6D00CD7940 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841EB20B57E6D00CD7940 /* MessagesViewController.swift */; };
 		DD0841EE20B58BB800CD7940 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841ED20B58BB800CD7940 /* MessageCell.swift */; };
-		DD0841F420B5A2E400CD7940 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F320B5A2E400CD7940 /* User.swift */; };
 		DD0841F620B65A6000CD7940 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F520B65A6000CD7940 /* UserService.swift */; };
 		DD0841F820B65B7000CD7940 /* DatabaseReference+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */; };
 		DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */; };
@@ -82,10 +79,7 @@
 		DD0841E220B5492600CD7940 /* AdImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdImageCell.swift; sourceTree = "<group>"; };
 		DD0841E420B549A400CD7940 /* AdCaptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCaptionCell.swift; sourceTree = "<group>"; };
 		DD0841E620B549E900CD7940 /* AdActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdActionCell.swift; sourceTree = "<group>"; };
-		DD0841E920B5760300CD7940 /* Messages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
-		DD0841EB20B57E6D00CD7940 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		DD0841ED20B58BB800CD7940 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		DD0841F320B5A2E400CD7940 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DD0841F520B65A6000CD7940 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseReference+Location.swift"; sourceTree = "<group>"; };
 		DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -277,7 +271,6 @@
 				DD1473FF205D84C000FFFD3C /* DisplaySectionViewController.swift */,
 				DDD3DB2A205CB75F000A29B3 /* FavoritesViewController.swift */,
 				DD0841DE20B5169700CD7940 /* DisplayAdViewController.swift */,
-				DD0841EB20B57E6D00CD7940 /* MessagesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -297,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				DDD3DB0B205C8849000A29B3 /* Advertisement.swift */,
-				DD0841F320B5A2E400CD7940 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,7 +342,6 @@
 				DDD3DAE6205C853D000A29B3 /* Main.storyboard */,
 				DDD3DB33205CB800000A29B3 /* Advertisements.storyboard */,
 				DDD3DB31205CB7D0000A29B3 /* Favorites.storyboard */,
-				DD0841E920B5760300CD7940 /* Messages.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -461,7 +452,6 @@
 				DD739E8620609B6E00C4DBAB /* discover.json in Resources */,
 				DD1473E7205CFD6B00FFFD3C /* FavoriteAdCell.xib in Resources */,
 				DDD3DB32205CB7D1000A29B3 /* Favorites.storyboard in Resources */,
-				DD0841EA20B5760300CD7940 /* Messages.storyboard in Resources */,
 				DDD3DAE8205C853D000A29B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,7 +568,6 @@
 				DD147408205DACEF00FFFD3C /* Constants.swift in Sources */,
 				DD14740D205DBB8F00FFFD3C /* ReachabilityHelper.swift in Sources */,
 				DD0841DF20B5169700CD7940 /* DisplayAdViewController.swift in Sources */,
-				DD0841F420B5A2E400CD7940 /* User.swift in Sources */,
 				DDD3DB2B205CB75F000A29B3 /* FavoritesViewController.swift in Sources */,
 				DD1473F0205D205E00FFFD3C /* LikeService.swift in Sources */,
 				DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */,
@@ -597,7 +586,6 @@
 				DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */,
 				DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */,
 				DD147402205D865000FFFD3C /* DisplaySectionViewModel.swift in Sources */,
-				DD0841EC20B57E6D00CD7940 /* MessagesViewController.swift in Sources */,
 				DDD3DB20205C8FAB000A29B3 /* AdvertisementViewModel.swift in Sources */,
 				DDD3DB0C205C8849000A29B3 /* Advertisement.swift in Sources */,
 				DDD3DB15205C8A03000A29B3 /* UITableView+Utility.swift in Sources */,
