@@ -15,14 +15,11 @@
 		DD0841E320B5492600CD7940 /* AdImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E220B5492600CD7940 /* AdImageCell.swift */; };
 		DD0841E520B549A400CD7940 /* AdCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E420B549A400CD7940 /* AdCaptionCell.swift */; };
 		DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E620B549E900CD7940 /* AdActionCell.swift */; };
-		DD0841EE20B58BB800CD7940 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841ED20B58BB800CD7940 /* MessageCell.swift */; };
-		DD0841F620B65A6000CD7940 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F520B65A6000CD7940 /* UserService.swift */; };
-		DD0841F820B65B7000CD7940 /* DatabaseReference+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */; };
 		DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */; };
 		DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */; };
 		DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */; };
 		DD1473E7205CFD6B00FFFD3C /* FavoriteAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1473E6205CFD6B00FFFD3C /* FavoriteAdCell.xib */; };
-		DD1473EC205D094100FFFD3C /* FavoriteAd.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD1473EA205D094100FFFD3C /* FavoriteAd.xcdatamodeld */; };
+		DD1473EC205D094100FFFD3C /* Advertisement.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD1473EA205D094100FFFD3C /* Advertisement.xcdatamodeld */; };
 		DD1473F0205D205E00FFFD3C /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473EF205D205E00FFFD3C /* LikeService.swift */; };
 		DD1473F5205D52E000FFFD3C /* AdvertisementCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473F4205D52E000FFFD3C /* AdvertisementCollectionView.swift */; };
 		DD1473F7205D65DB00FFFD3C /* AdvertisementsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473F6205D65DB00FFFD3C /* AdvertisementsSectionHeader.swift */; };
@@ -79,9 +76,6 @@
 		DD0841E220B5492600CD7940 /* AdImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdImageCell.swift; sourceTree = "<group>"; };
 		DD0841E420B549A400CD7940 /* AdCaptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCaptionCell.swift; sourceTree = "<group>"; };
 		DD0841E620B549E900CD7940 /* AdActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdActionCell.swift; sourceTree = "<group>"; };
-		DD0841ED20B58BB800CD7940 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		DD0841F520B65A6000CD7940 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatabaseReference+Location.swift"; sourceTree = "<group>"; };
 		DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdViewModel.swift; sourceTree = "<group>"; };
 		DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdCell.swift; sourceTree = "<group>"; };
@@ -167,7 +161,6 @@
 		DD0F7CD0205CB962000372E4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DD0841ED20B58BB800CD7940 /* MessageCell.swift */,
 				DD0841E820B549F200CD7940 /* DisplayAd */,
 				DD147409205DB3DC00FFFD3C /* AdvertisementCell */,
 				DD14740A205DB3E300FFFD3C /* FavoriteAdCell */,
@@ -243,10 +236,10 @@
 				DDD3DB16205C8A09000A29B3 /* Extensions */,
 				DDD3DB35205CB807000A29B3 /* Storyboards */,
 				DDD3DAE9205C853D000A29B3 /* Assets.xcassets */,
+				DD1473EA205D094100FFFD3C /* Advertisement.xcdatamodeld */,
 				DDD3DAEB205C853D000A29B3 /* LaunchScreen.storyboard */,
 				DD0841DC20B50E4700CD7940 /* GoogleService-Info.plist */,
 				DDD3DAEE205C853D000A29B3 /* Info.plist */,
-				DD1473EA205D094100FFFD3C /* FavoriteAd.xcdatamodeld */,
 			);
 			path = "Ad-Collector-Test-Project";
 			sourceTree = "<group>";
@@ -297,7 +290,6 @@
 		DDD3DB0F205C8903000A29B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DD0841F520B65A6000CD7940 /* UserService.swift */,
 				DDD3DB25205C90C8000A29B3 /* AdvertisementService.swift */,
 				DD1473EF205D205E00FFFD3C /* LikeService.swift */,
 			);
@@ -307,7 +299,6 @@
 		DDD3DB16205C8A09000A29B3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DD0841F720B65B7000CD7940 /* DatabaseReference+Location.swift */,
 				DD63B47E205CD4B800A7837E /* UICollectionView+Utility.swift */,
 				DDD3DB14205C8A02000A29B3 /* UITableView+Utility.swift */,
 				DD5A9867205F71BC005C00D1 /* Int+Commas.swift */,
@@ -368,6 +359,7 @@
 				DDD3DADD205C853D000A29B3 /* Resources */,
 				856988E7A7B6F316EBABB325 /* [CP] Embed Pods Frameworks */,
 				8A1D21AD00B053E9685AE811 /* [CP] Copy Pods Resources */,
+				DD08421A20BC031D00CD7940 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -557,6 +549,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ad-Collector-Test-Project/Pods-Ad-Collector-Test-Project-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DD08421A20BC031D00CD7940 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -572,16 +577,13 @@
 				DD1473F0205D205E00FFFD3C /* LikeService.swift in Sources */,
 				DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */,
 				DD147406205D9A3000FFFD3C /* DisplaySectionHeader.swift in Sources */,
-				DD1473EC205D094100FFFD3C /* FavoriteAd.xcdatamodeld in Sources */,
+				DD1473EC205D094100FFFD3C /* Advertisement.xcdatamodeld in Sources */,
 				DDD3DAE3205C853D000A29B3 /* AppDelegate.swift in Sources */,
 				DD0841E120B51E7A00CD7940 /* DisplayAdViewModel.swift in Sources */,
-				DD0841F820B65B7000CD7940 /* DatabaseReference+Location.swift in Sources */,
-				DD0841EE20B58BB800CD7940 /* MessageCell.swift in Sources */,
 				DD5A9868205F71BC005C00D1 /* Int+Commas.swift in Sources */,
 				DD147400205D84C000FFFD3C /* DisplaySectionViewController.swift in Sources */,
 				DD0841E520B549A400CD7940 /* AdCaptionCell.swift in Sources */,
 				DDD3DB26205C90C8000A29B3 /* AdvertisementService.swift in Sources */,
-				DD0841F620B65A6000CD7940 /* UserService.swift in Sources */,
 				DDD3DB18205C8BAD000A29B3 /* AdvertisementsViewController.swift in Sources */,
 				DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */,
 				DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */,
@@ -847,12 +849,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DD1473EA205D094100FFFD3C /* FavoriteAd.xcdatamodeld */ = {
+		DD1473EA205D094100FFFD3C /* Advertisement.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				DD1473EB205D094100FFFD3C /* FavoriteAd.xcdatamodel */,
 			);
 			currentVersion = DD1473EB205D094100FFFD3C /* FavoriteAd.xcdatamodel */;
+			name = Advertisement.xcdatamodeld;
 			path = FavoriteAd.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

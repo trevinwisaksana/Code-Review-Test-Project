@@ -118,11 +118,11 @@ extension FavoritesViewController: Dislikeable {
             return
         }
         
-        let adDisliked = dataSource.data(atIndex: indexPath.row)
+        let adSelected = dataSource.data(atIndex: indexPath.row)
         
-        dataSource.removeLike(for: adDisliked)
-        
-        reloadTimeline()
+        dataSource.likeService.unlike(adSelected) { (success) in
+            
+        }
     }
     
 }

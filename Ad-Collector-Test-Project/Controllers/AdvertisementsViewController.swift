@@ -298,25 +298,23 @@ extension AdvertisementsViewController: Likeable {
             return
         }
         
-        var adLiked: Advertisement?
+        var adSelected: Advertisement
         
         switch indexPath.section {
         case 0:
-            adLiked = dataSource.mostPopularContentData(atIndex: indexPath.row)
+            adSelected = dataSource.mostPopularContentData(atIndex: indexPath.row)
         case 1:
-            adLiked = dataSource.carsContentData(atIndex: indexPath.row)
+            adSelected = dataSource.carsContentData(atIndex: indexPath.row)
         case 2:
-            adLiked = dataSource.bapContentData(atIndex: indexPath.row)
+            adSelected = dataSource.bapContentData(atIndex: indexPath.row)
         case 3:
-            adLiked = dataSource.realEstateContentData(atIndex: indexPath.row)
+            adSelected = dataSource.realEstateContentData(atIndex: indexPath.row)
         default:
-            break
+            fatalError("Section out of bounds.")
         }
         
-        if let key = adLiked?.key, let favoritedAd = CoreDataHelper.fetchSelectedFavoriteAd(withKey: key) {
-            dataSource.removeLike(for: favoritedAd)
-        } else {
-            dataSource.likeAdvertisement(for: adLiked)
+        dataSource.likeService.setLike(status: !adSelected.isLiked, for: adSelected) { (success) in
+            
         }
     }
     

@@ -10,24 +10,27 @@ import Foundation
 import SwiftyJSON
 import CoreData
 
-final class Advertisement {
-
-    var title: String
-    var price: Int
-    var photoURL: String
-    var location: String
-    var key: String
-    var type: String
-    var score: Double
-
-    var isFavorite = false
-
-    init?(with json: JSON) {
+extension Advertisement {
+    
+    convenience init?(with json: JSON, isSaved: Bool) {
+        
+        let key = json["id"].stringValue
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: key, in: CoreDataHelper.context) else {
+            return nil
+        }
+        
+        if isSaved {
+            self.init(entity: entity, insertInto: CoreDataHelper.context)
+        } else {
+            self.init(entity: entity, insertInto: nil)
+        }
+        
         guard let title = json["description"].string else {
             return nil
         }
 
-        guard let price = json["price"]["value"].int else {
+        guard let price = json["price"]["value"].double else {
             return nil
         }
 
@@ -42,21 +45,21 @@ final class Advertisement {
         guard let rawScoreResponseString = json["score"].string else {
             return nil
         }
-        
+
         guard let score = Double(rawScoreResponseString) else {
             return nil
         }
-
-        let key = json["id"].stringValue
-        let photoURL = json["image"]["url"].string ?? ""
+        
+        let posterURL = json["image"]["url"].string ?? ""
 
         self.title = title
         self.price = price
         self.location = location
-        self.photoURL = photoURL
+        self.posterURL = posterURL
         self.key = key
         self.type = adType
         self.score = score
+        self.timestamp = Date()
     }
-
+    
 }

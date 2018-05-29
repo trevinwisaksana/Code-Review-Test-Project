@@ -195,14 +195,4 @@ final class AdvertisementViewModel {
         }
     }
     
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
-    }
-    
-    func likeAdvertisement(for ad: Advertisement?) {
-        likeService.saveToFavorite(ad)
-    }
-    
 }

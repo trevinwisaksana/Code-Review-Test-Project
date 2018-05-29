@@ -13,7 +13,7 @@ import Foundation
 class DummyAdvertisementService: AdvertisementService {
     
     var data: [Advertisement]
-    
+
     init(data: [Advertisement]) {
         self.data = data
     }

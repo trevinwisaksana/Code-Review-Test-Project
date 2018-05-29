@@ -30,18 +30,8 @@ final class DisplayAdViewModel {
         }
     }
     
-    func load(_ ad: Advertisement) {
-        content = ad
-    }
-    
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
-    }
-    
-    func likeAdvertisement(for ad: Advertisement) {
-        likeService.saveToFavorite(ad)
+    func load(_ advertisement: Advertisement) {
+        content = advertisement
     }
     
 }

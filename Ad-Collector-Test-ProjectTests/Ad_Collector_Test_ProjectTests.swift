@@ -18,12 +18,10 @@ class Ad_Collector_Test_ProjectTests: XCTestCase {
     // MARK: - Dummy Services
     
     var dummyDataFactory = DummyDataFactory()
-    
     var dummyAdvertisementService: DummyAdvertisementService!
     var dummyLikeService: LikeService!
     
     // MARK: - Setup
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.

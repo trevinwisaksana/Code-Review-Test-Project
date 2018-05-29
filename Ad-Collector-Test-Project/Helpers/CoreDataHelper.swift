@@ -23,28 +23,48 @@ struct CoreDataHelper {
         return context
     }()
     
-    static func newFavoriteAd() -> FavoriteAd {
-        let FavoriteAd = NSEntityDescription.insertNewObject(forEntityName: "FavoriteAd", into: context) as! FavoriteAd
-        
-        return FavoriteAd
+    static func newAdvertisement() -> Advertisement {
+        let advertisement = NSEntityDescription.insertNewObject(forEntityName: "FavoriteAd", into: context) as! Advertisement
+        return advertisement
     }
     
-    static func save()  {
-        do {
-            try context.save()
-        } catch let error {
-            print("Could not save \(error.localizedDescription)")
+    static func save(success: @escaping (Bool, Error?) -> Void) {
+        DispatchQueue.global().async {
+            do {
+                try context.save()
+                success(true, nil)
+            } catch let error {
+                success(false, error)
+            }
         }
     }
     
-    static func delete(ad: FavoriteAd){
-        context.delete(ad)
-        save()
+    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        DispatchQueue.global().async {
+            context.delete(advertisement)
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        save { (sucesss, error) in
+            if let error = error {
+                success(false, error)
+            }
+            
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            success(true, nil)
+        }
     }
     
-    static func retrieveFavoriteAds() -> [FavoriteAd] {
+    static func retrieveAdvertisements() -> [Advertisement] {
         do {
-            let fetchRequest = NSFetchRequest<FavoriteAd>(entityName: "FavoriteAd")
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: "FavoriteAd")
             let results = try context.fetch(fetchRequest)
             return results
         } catch let error {
@@ -53,27 +73,14 @@ struct CoreDataHelper {
         }
     }
     
-    static func fetchSelectedFavoriteAd(withKey key: String) -> FavoriteAd? {
-        do {
-            let fetchRequest = NSFetchRequest<FavoriteAd>(entityName: "FavoriteAd")
-            let results = try context.fetch(fetchRequest)
-            
-            var output: FavoriteAd?
-            
-            results.forEach() { (ad) in
-                if ad.key == key {
-                    output = ad
-                }
+    static func fetchAdvertisement(withKey key: String, completion: @escaping (Advertisement?) -> Void) {
+        let fetchRequest = NSFetchRequest<Advertisement>(entityName: key)
+        _ = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (result) in
+            if let advertisement = result.finalResult?.first {
+                completion(advertisement)
+            } else {
+                completion(nil)
             }
-            
-            return output
-            
-        } catch let error {
-            print("Could not fetch \(error.localizedDescription)")
-            return nil
         }
     }
 }
-
-
-

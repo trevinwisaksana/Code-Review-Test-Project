@@ -56,15 +56,5 @@ final class DisplaySectionViewModel {
             fatalError("Error: unexpected type.")
         }
     }
-    
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
-    }
-    
-    func likeAdvertisement(for ad: Advertisement) {
-        likeService.saveToFavorite(ad)
-    }
 
 }
