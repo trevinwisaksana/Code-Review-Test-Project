@@ -24,7 +24,7 @@ struct CoreDataHelper {
     }()
     
     static func newAdvertisement() -> Advertisement {
-        let advertisement = NSEntityDescription.insertNewObject(forEntityName: "FavoriteAd", into: context) as! Advertisement
+        let advertisement = NSEntityDescription.insertNewObject(forEntityName: "Advertisement", into: context) as! Advertisement
         return advertisement
     }
     
@@ -39,32 +39,50 @@ struct CoreDataHelper {
         }
     }
     
-    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
-        let dispatchGroup = DispatchGroup()
-        
-        dispatchGroup.enter()
-        DispatchQueue.global().async {
-            context.delete(advertisement)
-            dispatchGroup.leave()
+//    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
+//        let dispatchGroup = DispatchGroup()
+//
+//        dispatchGroup.enter()
+//        DispatchQueue.global().async {
+//            context.delete(advertisement)
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.enter()
+//        save { (sucesss, error) in
+//            if let error = error {
+//                success(false, error)
+//            }
+//
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.notify(queue: .global()) {
+//            success(true, nil)
+//        }
+//    }
+    
+    static func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
+        guard let key = advertisement.key else {
+            return
         }
         
-        dispatchGroup.enter()
-        save { (sucesss, error) in
-            if let error = error {
-                success(false, error)
-            }
-            
-            dispatchGroup.leave()
+        guard let advertisement = fetchAdvertisement(withKey: key) else {
+            success(false)
+            return
         }
         
-        dispatchGroup.notify(queue: .global()) {
-            success(true, nil)
+        advertisement.isLiked = false
+        
+        CoreDataHelper.save { (isSuccessful, error) in
+            success(isSuccessful)
+            print("WARNING: \(error?.localizedDescription)")
         }
     }
     
     static func retrieveAdvertisements() -> [Advertisement] {
         do {
-            let fetchRequest = NSFetchRequest<Advertisement>(entityName: "FavoriteAd")
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
             let results = try context.fetch(fetchRequest)
             return results
         } catch let error {
@@ -73,14 +91,39 @@ struct CoreDataHelper {
         }
     }
     
-    static func fetchAdvertisement(withKey key: String, completion: @escaping (Advertisement?) -> Void) {
-        let fetchRequest = NSFetchRequest<Advertisement>(entityName: key)
-        _ = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (result) in
-            if let advertisement = result.finalResult?.first {
-                completion(advertisement)
-            } else {
-                completion(nil)
-            }
+    static func fetchLikedAdvertisements() -> [Advertisement] {
+        do {
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+            fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
+            let results = try context.fetch(fetchRequest)
+            return results
+        } catch let error {
+            print("Could not fetch \(error.localizedDescription)")
+            return[]
         }
     }
+    
+    static func fetchAdvertisement(withKey key: String) -> Advertisement? {
+        do {
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+            fetchRequest.predicate = NSPredicate(format: "key = %@", key)
+            let results = try context.fetch(fetchRequest).first
+            return results
+        } catch let error {
+            print("Could not fetch \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+//    static func fetchAdvertisement(withKey key: String, completion: @escaping (Advertisement?) -> Void) {
+//        do {
+//            let fetchRequest = NSFetchRequest<Advertisement>(entityName: "Advertisement")
+//            fetchRequest.predicate = NSPredicate(format: "advertisement.key = %@", key)
+//            let results = try context.fetch(fetchRequest).first
+//            return results
+//        } catch let error {
+//            print("Could not fetch \(error.localizedDescription)")
+//            return nil
+//        }
+//    }
 }

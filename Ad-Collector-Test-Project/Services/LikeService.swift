@@ -24,23 +24,20 @@ struct LikeService {
             return
         }
         
-        CoreDataHelper.fetchAdvertisement(withKey: key) { (advertisement) in
-            
-            guard let advertisement = advertisement else {
-                success(false)
-                return
-            }
-            
-            advertisement.isLiked = true
-            
-            CoreDataHelper.save { (success, error) in
-                
-            }
+        guard let advertisement = CoreDataHelper.fetchAdvertisement(withKey: key) else {
+            success(false)
+            return
+        }
+
+        advertisement.isLiked = true
+
+        CoreDataHelper.save { (success, error) in
+
         }
     }
     
     func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
-        CoreDataHelper.delete(advertisement) { (isSuccessful, error) in
+        CoreDataHelper.unlike(advertisement) { (isSuccessful) in
             success(isSuccessful)
         }
     }

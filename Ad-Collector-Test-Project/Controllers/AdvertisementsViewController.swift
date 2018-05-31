@@ -8,17 +8,20 @@
 
 import UIKit
 import Reachability
+import CoreData
 
 final class AdvertisementsViewController: UIViewController {
     
     //---- Properties ----//
     
-    let dataSource = AdvertisementViewModel(adService: AdvertisementService(), likeService: LikeService())
+    private let dataSource = AdvertisementViewModel(adService: AdvertisementService(), likeService: LikeService())
     
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     private let reachabiltyHelper = ReachabilityHelper()
-    private let refreshControl = UIRefreshControl()
+    
+    private lazy var refreshControl = UIRefreshControl()
     private lazy var alertController = UIAlertController()
+    
     
     //---- Subivews ----//
     
@@ -36,6 +39,7 @@ final class AdvertisementsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         dataSource.loadCachedAdvertisements { (_) in
             if self.activityView.isAnimating {
                 self.activityView.stopAnimating()
@@ -52,6 +56,7 @@ final class AdvertisementsViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource.delegate = self
+        dataSource.fetchResultsController.delegate = self
     }
     
     //---- Reachability ----//
@@ -313,9 +318,21 @@ extension AdvertisementsViewController: Likeable {
             fatalError("Section out of bounds.")
         }
         
-        dataSource.likeService.setLike(status: !adSelected.isLiked, for: adSelected) { (success) in
+        dataSource.likeService.setLike(status: adSelected.isLiked, for: adSelected) { (success) in
             
         }
+    }
+    
+}
+
+extension AdvertisementsViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
     }
     
 }

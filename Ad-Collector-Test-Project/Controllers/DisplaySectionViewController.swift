@@ -121,7 +121,6 @@ extension DisplaySectionViewController: Likeable {
         dataSource.likeService.setLike(status: !adSelected.isLiked, for: adSelected) { (success) in
             
         }
-        
     }
     
 }

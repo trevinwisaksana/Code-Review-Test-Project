@@ -6,7 +6,8 @@
 //  Copyright © 2018 Trevin Wisaksana. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 protocol AdvertisementDataSourceDelegate: class {
     func contentChange()
@@ -20,6 +21,22 @@ final class AdvertisementViewModel {
     
     var advertisementService: AdvertisementService
     var likeService: LikeService
+    
+    lazy var fetchResultsController: NSFetchedResultsController<Advertisement> = {
+        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+        request.sortDescriptors = []
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError()
+        }
+        
+        let persistentContainer = appDelegate.persistentContainer
+        let context = persistentContainer.viewContext
+        
+        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return frc
+    }()
     
     //---- Initializer ----//
     
@@ -155,6 +172,10 @@ final class AdvertisementViewModel {
     
     //---- Load Operation ----//
     
+    func load() {
+        content = fetchResultsController.sections?.first?.objects as! [Advertisement]
+    }
+    
     func loadAdvertisements(completion: @escaping (Error?) -> Void) {
         advertisementService.fetchAdvertisements() { (advertisements, error) in
             if let error = error {
@@ -171,6 +192,7 @@ final class AdvertisementViewModel {
         }
     }
     
+    // TODO: Change the cache status
     func loadCachedAdvertisements(completion: @escaping (Error?) -> Void) {
         advertisementService.retrieveCachedAds { (advertisement, error) in
             if let error = error {

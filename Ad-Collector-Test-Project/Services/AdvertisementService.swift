@@ -26,14 +26,7 @@ class AdvertisementService {
                     return
                 }
                 
-                let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: false) }
-                
-                // Caching the parsed data
-                if  let request = response.request,
-                    let data = response.data, let response = response.response {
-                    let cachedResponse = CachedURLResponse(response: response, data: data)
-                    URLCache.shared.storeCachedResponse(cachedResponse, for: request)
-                }
+                let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: true) }
  
                 completion(advertisements, nil)
             case .failure(let error):
@@ -43,25 +36,11 @@ class AdvertisementService {
     }
     
     func retrieveCachedAds(completion: @escaping ([Advertisement], Error?) -> Void) {
-        guard let url = baseURL else {
-            completion([Advertisement](), nil)
-            return
-        }
-        
         // Checks if the response has already by cached
-        if  let request = Alamofire.request(url).request,
-            let data = URLCache.shared.cachedResponse(for: request)?.data {
-            DispatchQueue.main.async {
-                guard let jsonArray = JSON(data)["items"].array else {
-                    completion([Advertisement](), nil)
-                    return
-                }
-                
-                let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: false) }
-                
-                completion(advertisements, nil)
-                return
-            }
+        // Check the timestamp and see if it needs to be purged
+        let data = CoreDataHelper.retrieveAdvertisements()
+        if !data.isEmpty {
+            completion(data, nil)
         } else {
             fetchAdvertisements { (advertisement, error) in
                 if let error = error {

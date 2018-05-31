@@ -14,9 +14,7 @@ extension Advertisement {
     
     convenience init?(with json: JSON, isSaved: Bool) {
         
-        let key = json["id"].stringValue
-        
-        guard let entity = NSEntityDescription.entity(forEntityName: key, in: CoreDataHelper.context) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Advertisement", in: CoreDataHelper.context) else {
             return nil
         }
         
@@ -50,6 +48,7 @@ extension Advertisement {
             return nil
         }
         
+        let key = json["id"].stringValue
         let posterURL = json["image"]["url"].string ?? ""
 
         self.title = title

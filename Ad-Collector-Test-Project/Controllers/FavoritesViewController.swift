@@ -7,12 +7,30 @@
 //
 
 import UIKit
+import CoreData
 
 final class FavoritesViewController: UIViewController {
     
     //---- Properties ----//
     
     let dataSource = FavoriteAdViewModel(service: LikeService())
+    
+    private lazy var fetchResultsController: NSFetchedResultsController<Advertisement> = {
+        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+        request.sortDescriptors = []
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError()
+        }
+        
+        let persistentContainer = appDelegate.persistentContainer
+        let context = persistentContainer.viewContext
+        
+        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        
+        return frc
+    }()
     
     //---- Subviews ----//
     
@@ -118,11 +136,20 @@ extension FavoritesViewController: Dislikeable {
             return
         }
         
-        let adSelected = dataSource.data(atIndex: indexPath.row)
+        let adDisliked = dataSource.data(atIndex: indexPath.row)
         
-        dataSource.likeService.unlike(adSelected) { (success) in
-            
+        dataSource.likeService.unlike(adDisliked) { (success) in
+            self.reloadTimeline()
         }
+        
+    }
+    
+}
+
+extension FavoritesViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
     }
     
 }

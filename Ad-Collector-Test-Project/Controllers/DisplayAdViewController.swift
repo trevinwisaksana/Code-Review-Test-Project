@@ -39,7 +39,6 @@ final class DisplayAdViewController: UIViewController {
         return true
     }
     
-    
 }
 
 extension DisplayAdViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

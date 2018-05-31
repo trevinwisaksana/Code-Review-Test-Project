@@ -2,4 +2,262 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Controllers/AdvertisementsViewController.swift"
+            timestampString = "549441503.802145"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Controllers/AdvertisementsViewController.swift"
+            timestampString = "549441503.8022749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "controllerDidChangeContent(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Services/AdvertisementService.swift"
+            timestampString = "549440891.915939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "retrieveCachedAds(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Services/AdvertisementService.swift"
+            timestampString = "549440891.916492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "retrieveCachedAds(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ad_Collector_Test_Project.AdvertisementService.retrieveCachedAds(completion: (Swift.Array&lt;Ad_Collector_Test_Project.Advertisement&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Ad-Collector-Test-Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Services/AdvertisementService.swift"
+                  timestampString = "549441503.999144"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "230">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Ad_Collector_Test_Project.Advertisement&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Ad_Collector_Test_Project.AdvertisementService.retrieveCachedAds(completion: (Swift.Array&lt;Ad_Collector_Test_Project.Advertisement&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Ad-Collector-Test-Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Services/AdvertisementService.swift"
+                  timestampString = "549441504.0019619"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Controllers/AdvertisementsViewController.swift"
+            timestampString = "549441503.802559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "didTapLikeButton(_:on:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ad_Collector_Test_Project.AdvertisementsViewController.didTapLikeButton(__ObjC.UIButton, on: Ad_Collector_Test_Project.AdvertisementCell) -&gt; ()"
+                  moduleName = "Ad-Collector-Test-Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Controllers/AdvertisementsViewController.swift"
+                  timestampString = "549441504.010946"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "321"
+                  endingLineNumber = "321"
+                  offsetFromSymbolStart = "1610">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Ad_Collector_Test_Project.AdvertisementsViewController.didTapLikeButton(__ObjC.UIButton, on: Ad_Collector_Test_Project.AdvertisementCell) -&gt; ()"
+                  moduleName = "Ad-Collector-Test-Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Controllers/AdvertisementsViewController.swift"
+                  timestampString = "549441504.0135601"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "323"
+                  endingLineNumber = "323"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Services/LikeService.swift"
+            timestampString = "549441503.802655"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "setLike(status:for:success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Services/LikeService.swift"
+            timestampString = "549441503.803206"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "like(_:success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Services/LikeService.swift"
+            timestampString = "549441503.803538"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "setLike(status:for:success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Helpers/CoreDataHelper.swift"
+            timestampString = "549441503.803833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "unlike(_:success:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Ad_Collector_Test_Project.CoreDataHelper.unlike(Ad_Collector_Test_Project.Advertisement, success: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Ad-Collector-Test-Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Helpers/CoreDataHelper.swift"
+                  timestampString = "549441504.036836"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "431">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static Ad_Collector_Test_Project.CoreDataHelper.unlike(Ad_Collector_Test_Project.Advertisement, success: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Ad-Collector-Test-Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Helpers/CoreDataHelper.swift"
+                  timestampString = "549441504.0390511"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ad-Collector-Test-Project/Services/LikeService.swift"
+            timestampString = "549441523.656108"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "like(_:success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
