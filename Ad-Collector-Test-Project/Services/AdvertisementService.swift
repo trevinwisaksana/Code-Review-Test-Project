@@ -27,6 +27,7 @@ class AdvertisementService {
                 }
                 
                 let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: true) }
+                CoreDataHelper.save()
  
                 completion(advertisements, nil)
             case .failure(let error):

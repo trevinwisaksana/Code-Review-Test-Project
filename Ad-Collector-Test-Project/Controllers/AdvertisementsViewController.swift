@@ -56,7 +56,6 @@ final class AdvertisementsViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource.delegate = self
-        dataSource.fetchResultsController.delegate = self
     }
     
     //---- Reachability ----//
@@ -325,17 +324,6 @@ extension AdvertisementsViewController: Likeable {
     
 }
 
-extension AdvertisementsViewController: NSFetchedResultsControllerDelegate {
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-    }
-    
-}
 
 extension AdvertisementsViewController: NetworkStatusListener {
     

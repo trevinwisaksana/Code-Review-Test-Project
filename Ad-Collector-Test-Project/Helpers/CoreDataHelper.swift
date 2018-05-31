@@ -28,39 +28,18 @@ struct CoreDataHelper {
         return advertisement
     }
     
-    static func save(success: @escaping (Bool, Error?) -> Void) {
-        DispatchQueue.global().async {
-            do {
-                try context.save()
-                success(true, nil)
-            } catch let error {
-                success(false, error)
-            }
+    static func save() {
+        do {
+            try context.save()
+        } catch let error {
+            print("\(error.localizedDescription)")
         }
     }
     
-//    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
-//        let dispatchGroup = DispatchGroup()
-//
-//        dispatchGroup.enter()
-//        DispatchQueue.global().async {
-//            context.delete(advertisement)
-//            dispatchGroup.leave()
-//        }
-//
-//        dispatchGroup.enter()
-//        save { (sucesss, error) in
-//            if let error = error {
-//                success(false, error)
-//            }
-//
-//            dispatchGroup.leave()
-//        }
-//
-//        dispatchGroup.notify(queue: .global()) {
-//            success(true, nil)
-//        }
-//    }
+    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
+        context.delete(advertisement)
+        save()
+    }
     
     static func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         guard let key = advertisement.key else {
@@ -74,10 +53,8 @@ struct CoreDataHelper {
         
         advertisement.isLiked = false
         
-        CoreDataHelper.save { (isSuccessful, error) in
-            success(isSuccessful)
-            print("WARNING: \(error?.localizedDescription)")
-        }
+        CoreDataHelper.save()
+        success(true)
     }
     
     static func retrieveAdvertisements() -> [Advertisement] {

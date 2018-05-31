@@ -28,10 +28,6 @@ extension Advertisement {
             return nil
         }
 
-        guard let price = json["price"]["value"].double else {
-            return nil
-        }
-
         guard let location = json["location"].string else {
             return nil
         }
@@ -50,6 +46,7 @@ extension Advertisement {
         
         let key = json["id"].stringValue
         let posterURL = json["image"]["url"].string ?? ""
+        let price = json["price"]["value"].doubleValue
 
         self.title = title
         self.price = price

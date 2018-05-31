@@ -22,21 +22,21 @@ final class AdvertisementViewModel {
     var advertisementService: AdvertisementService
     var likeService: LikeService
     
-    lazy var fetchResultsController: NSFetchedResultsController<Advertisement> = {
-        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-        request.sortDescriptors = []
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError()
-        }
-        
-        let persistentContainer = appDelegate.persistentContainer
-        let context = persistentContainer.viewContext
-        
-        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        return frc
-    }()
+//    lazy var fetchResultsController: NSFetchedResultsController<Advertisement> = {
+//        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+//        request.sortDescriptors = []
+//
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            fatalError()
+//        }
+//
+//        let persistentContainer = appDelegate.persistentContainer
+//        let context = persistentContainer.viewContext
+//
+//        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+//
+//        return frc
+//    }()
     
     //---- Initializer ----//
     
@@ -58,8 +58,12 @@ final class AdvertisementViewModel {
     //---- Most Popular Content ----//
     
     fileprivate var mostPopularContent: [Advertisement] {
-        let popularContent = content.filter { (advertisement) -> Bool in
+        var popularContent = content.filter { (advertisement) -> Bool in
             advertisement.score > 0.9
+        }
+        
+        popularContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularContent
@@ -78,8 +82,12 @@ final class AdvertisementViewModel {
     
     // Used to be passed to the AdvertisementsVC
     fileprivate var popularCarsContent: [Advertisement] {
-        let popularCarsContent = carsContent.filter { (advertisement) -> Bool in
+        var popularCarsContent = carsContent.filter { (advertisement) -> Bool in
             advertisement.score > 0.32
+        }
+        
+        popularCarsContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularCarsContent
@@ -98,8 +106,12 @@ final class AdvertisementViewModel {
     
     // Used to be passed to the AdvertisementsVC
     fileprivate var popularRealEstateContent: [Advertisement] {
-        let popularRealEstateContent = realEstateContent.filter { (advertisement) -> Bool in
+        var popularRealEstateContent = realEstateContent.filter { (advertisement) -> Bool in
             advertisement.score > 0.7
+        }
+        
+        popularRealEstateContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularRealEstateContent
@@ -118,8 +130,12 @@ final class AdvertisementViewModel {
     
     // Used to be passed to the AdvertisementsVC
     fileprivate var popularBapContent: [Advertisement] {
-        let popularBapContent = bapContent.filter { (advertisement) -> Bool in
+        var popularBapContent = bapContent.filter { (advertisement) -> Bool in
             advertisement.score > 0.8
+        }
+        
+        popularBapContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularBapContent
@@ -171,10 +187,6 @@ final class AdvertisementViewModel {
     }
     
     //---- Load Operation ----//
-    
-    func load() {
-        content = fetchResultsController.sections?.first?.objects as! [Advertisement]
-    }
     
     func loadAdvertisements(completion: @escaping (Error?) -> Void) {
         advertisementService.fetchAdvertisements() { (advertisements, error) in
