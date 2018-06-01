@@ -18,7 +18,6 @@ final class DisplayAdViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     //---- VC Lifecycle ----//
     
     override func viewDidLoad() {
@@ -53,27 +52,27 @@ extension DisplayAdViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let selectedAd = dataSource.content {
-            
+        if let advertisement = dataSource.content {
             switch indexPath.section {
             case 0:
                 let cell: AdImageCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configure(selectedAd)
+                cell.configure(advertisement)
                 return cell
             case 1:
                 let cell: AdCaptionCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configure(selectedAd)
+                cell.configure(advertisement)
                 return cell
             case 2:
                 let cell: AdActionCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.configure(selectedAd)
+                cell.likeableDelegate = self
+                cell.sharableDelegate = self
+                cell.configure(advertisement)
                 return cell
             default:
                 fatalError("Index Path out of range.")
             }
-            
         } else {
-            fatalError("Cannot find selected ad.")
+            fatalError("Advertisement is nil.")
         }
         
     }
@@ -92,3 +91,31 @@ extension DisplayAdViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
 }
+
+extension DisplayAdViewController: Likeable {
+    
+    func didTapLikeButton(_ likeButton: UIButton, on cell: UICollectionViewCell) {
+        guard let adSelected = dataSource.content else {
+            return
+        }
+        
+        dataSource.likeService.setLike(status: adSelected.isLiked, for: adSelected) { (success) in
+            
+        }
+    }
+    
+}
+
+extension DisplayAdViewController: Shareable {
+    
+    func didTapShareButton() {
+        
+        let advertisement = dataSource.content
+        
+        let activityVC = UIActivityViewController(activityItems: [advertisement], applicationActivities: [])
+        
+        present(activityVC, animated: true, completion: nil)
+    }
+    
+}
+

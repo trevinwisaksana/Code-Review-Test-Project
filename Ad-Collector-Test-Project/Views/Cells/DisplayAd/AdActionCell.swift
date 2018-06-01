@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol Shareable: class {
+    func didTapShareButton()
+}
+
 final class AdActionCell: UICollectionViewCell {
+    
+    //---- Properties ----//
+    
+    weak var likeableDelegate: Likeable?
+    weak var sharableDelegate: Shareable?
     
     //---- IBOutlets ----//
     
@@ -17,11 +26,12 @@ final class AdActionCell: UICollectionViewCell {
     //---- IBActions ----//
     
     @IBAction func didPressLikeButton(_ sender: UIButton) {
-        
+        sender.isSelected = !sender.isSelected
+        likeableDelegate?.didTapLikeButton(sender, on: self)
     }
     
     @IBAction func didPressShareButton(_ sender: UIButton) {
-        
+        sharableDelegate?.didTapShareButton()
     }
     
     @IBAction func didPressChatButton(_ sender: UIButton) {
@@ -31,7 +41,7 @@ final class AdActionCell: UICollectionViewCell {
     //---- Configuration Methods ----//
     
     func configure(_ data: Advertisement) {
-        
+        likeButton.isSelected = data.isLiked
     }
     
 }

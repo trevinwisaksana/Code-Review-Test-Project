@@ -59,3 +59,37 @@ extension Advertisement {
     }
     
 }
+
+extension Advertisement: UIActivityItemSource {
+    
+    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        let placeholder = "Share this advertisement"
+        return placeholder
+    }
+    
+    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
+        
+        let price = self.price
+        let title = self.title
+        let location = self.location
+        
+        let message =
+        """
+        Hi! Check this item in \(location!)!
+        
+        \(title!).
+        
+        The price is kr \(Int(price).decimalStyleString).
+        """
+        
+        switch activityType {
+        case UIActivityType.mail:
+            return message
+        case UIActivityType.message:
+            return message
+        default:
+            return message
+        }
+    }
+    
+}

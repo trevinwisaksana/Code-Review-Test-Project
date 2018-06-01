@@ -15,23 +15,6 @@ final class FavoritesViewController: UIViewController {
     
     let dataSource = FavoriteAdViewModel(service: LikeService())
     
-    private lazy var fetchResultsController: NSFetchedResultsController<Advertisement> = {
-        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-        request.sortDescriptors = []
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError()
-        }
-        
-        let persistentContainer = appDelegate.persistentContainer
-        let context = persistentContainer.viewContext
-        
-        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        frc.delegate = self
-        
-        return frc
-    }()
-    
     //---- Subviews ----//
     
     @IBOutlet weak var tableView: UITableView!

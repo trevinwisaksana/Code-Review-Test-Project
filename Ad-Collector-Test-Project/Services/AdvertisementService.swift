@@ -16,7 +16,9 @@ class AdvertisementService {
     
     func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
         
-        guard let url = baseURL else { return }
+        guard let url = baseURL else {
+            return
+        }
     
         Alamofire.request(url).validate().responseJSON { (response) in
             switch response.result {
@@ -40,9 +42,7 @@ class AdvertisementService {
         // Checks if the response has already by cached
         // Check the timestamp and see if it needs to be purged
         let data = CoreDataHelper.retrieveAdvertisements()
-        if !data.isEmpty {
-            completion(data, nil)
-        } else {
+        if data.isEmpty {
             fetchAdvertisements { (advertisement, error) in
                 if let error = error {
                     completion([Advertisement](), error)
@@ -51,6 +51,8 @@ class AdvertisementService {
                 
                 completion(advertisement, nil)
             }
+        } else {
+            completion(data, nil)
         }
         
     }

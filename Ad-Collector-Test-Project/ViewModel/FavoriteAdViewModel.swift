@@ -14,7 +14,6 @@ final class FavoriteAdViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    
     var likeService: LikeService
     
     //---- Initializer ----//

@@ -18,25 +18,8 @@ final class AdvertisementViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    
     var advertisementService: AdvertisementService
     var likeService: LikeService
-    
-//    lazy var fetchResultsController: NSFetchedResultsController<Advertisement> = {
-//        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-//        request.sortDescriptors = []
-//
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            fatalError()
-//        }
-//
-//        let persistentContainer = appDelegate.persistentContainer
-//        let context = persistentContainer.viewContext
-//
-//        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-//
-//        return frc
-//    }()
     
     //---- Initializer ----//
     

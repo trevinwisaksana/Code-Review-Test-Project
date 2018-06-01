@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 protocol Likeable: class {
-    func didTapLikeButton(_ likeButton: UIButton, on cell: AdvertisementCell)
+    func didTapLikeButton(_ likeButton: UIButton, on cell: UICollectionViewCell)
 }
 
 
