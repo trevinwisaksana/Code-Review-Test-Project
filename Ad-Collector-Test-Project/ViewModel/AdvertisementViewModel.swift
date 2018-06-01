@@ -204,7 +204,6 @@ final class AdvertisementViewModel {
         }
     }
     
-    // TODO: Change the cache status
     func loadCachedAdvertisements(completion: @escaping (Error?) -> Void) {
         advertisementService.retrieveCachedAds { (advertisement, error) in
             if let error = error {

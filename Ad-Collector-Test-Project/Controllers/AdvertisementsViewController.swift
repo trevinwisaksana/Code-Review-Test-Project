@@ -31,6 +31,9 @@ final class AdvertisementsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CoreDataHelper.purgeOutdatedData()
+        
         configureActivityView()
         configureCollectionView()
         configureDataSource()

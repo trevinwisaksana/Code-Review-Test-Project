@@ -18,6 +18,7 @@ struct LikeService {
         }
     }
     
+    // TODO: Create an asynchronous approach
     func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         
         guard let key = advertisement.key else {
@@ -32,6 +33,7 @@ struct LikeService {
         advertisement.isLiked = true
 
         CoreDataHelper.save()
+        success(true)
     }
     
     func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {

@@ -36,26 +36,34 @@ struct CoreDataHelper {
         }
     }
     
-    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
-        context.delete(advertisement)
-        save()
+    static func purgeOutdatedData() {
+        let purgeDate = Date().addingTimeInterval(-60 * 60 * 24 * 7) // One week
+        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+        
+        do {
+            let results = try context.fetch(request)
+            
+            for object in results {
+                
+                guard let timestamp = object.timestamp else {
+                    return
+                }
+                
+                if timestamp < purgeDate {
+                    context.delete(object)
+                }
+            }
+            
+        } catch let error {
+            print("\(error.localizedDescription)")
+        }
     }
     
-    static func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
-        guard let key = advertisement.key else {
-            return
-        }
-        
-        guard let advertisement = fetchAdvertisement(withKey: key) else {
-            success(false)
-            return
-        }
-        
-        advertisement.isLiked = false
-        
-        CoreDataHelper.save()
-        success(true)
+    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
+        context.delete(advertisement)
     }
+    
+    //---- Fetch ----//
     
     static func retrieveAdvertisements() -> [Advertisement] {
         do {
@@ -92,15 +100,4 @@ struct CoreDataHelper {
         }
     }
     
-//    static func fetchAdvertisement(withKey key: String, completion: @escaping (Advertisement?) -> Void) {
-//        do {
-//            let fetchRequest = NSFetchRequest<Advertisement>(entityName: "Advertisement")
-//            fetchRequest.predicate = NSPredicate(format: "advertisement.key = %@", key)
-//            let results = try context.fetch(fetchRequest).first
-//            return results
-//        } catch let error {
-//            print("Could not fetch \(error.localizedDescription)")
-//            return nil
-//        }
-//    }
 }

@@ -143,7 +143,6 @@ extension FavoritesViewController: Dislikeable {
         dataSource.likeService.unlike(adDisliked) { (success) in
             self.reloadTimeline()
         }
-        
     }
     
 }
