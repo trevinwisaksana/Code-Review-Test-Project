@@ -39,6 +39,8 @@ struct CoreDataHelper {
     static func purgeOutdatedData() {
         let purgeDate = Date().addingTimeInterval(-60 * 60 * 24 * 7) // One week
         let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+        // Only purge outdated data that is not liked
+        request.predicate = NSPredicate(format: "isLiked == NO")
         
         do {
             let results = try context.fetch(request)
@@ -80,6 +82,7 @@ struct CoreDataHelper {
         do {
             let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
             fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
+            
             let results = try context.fetch(fetchRequest)
             return results
         } catch let error {
