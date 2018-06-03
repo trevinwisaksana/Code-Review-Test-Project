@@ -23,13 +23,13 @@ final class FavoriteAdCell: UITableViewCell {
     
     weak var delegate: Dislikeable?
     
-    func configure(_ data: FavoriteAd) {
+    func configure(_ data: Advertisement) {
         descriptionLabel.text = data.title
         priceLabel.text = "kr " + Int(data.price).decimalStyleString
         locationLabel.text = data.location
-        likeButton.isSelected = data.isFavorite
+        likeButton.isSelected = data.isLiked
         
-        if let photoURL = data.photoURL {
+        if let photoURL = data.posterURL {
             let imageURL = URL(string: "https://images.finncdn.no/dynamic/480x360c/\(photoURL)")
             let placeholderImage = UIImage(named: Constants.Image.placeholderImage)
             photoImageView.sd_setImage(with: imageURL, placeholderImage: placeholderImage, options: .scaleDownLargeImages, completed: nil)

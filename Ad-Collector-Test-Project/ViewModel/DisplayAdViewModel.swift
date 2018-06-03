@@ -12,8 +12,7 @@ final class DisplayAdViewModel {
     
     //---- Properties ----//
     
-    weak var delegate: AdvertisementDataSourceDelegate?
-    
+    var content: Advertisement!
     var likeService: LikeService
     
     //---- Initializer ----//
@@ -21,27 +20,5 @@ final class DisplayAdViewModel {
     init(service: LikeService) {
         self.likeService = service
     }
-    
-    //---- Data Source ----//
-    
-    var content: Advertisement? {
-        didSet {
-            delegate?.contentChange()
-        }
-    }
-    
-    func load(_ ad: Advertisement) {
-        content = ad
-    }
-    
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
-    }
-    
-    func likeAdvertisement(for ad: Advertisement) {
-        likeService.saveToFavorite(ad)
-    }
-    
+ 
 }

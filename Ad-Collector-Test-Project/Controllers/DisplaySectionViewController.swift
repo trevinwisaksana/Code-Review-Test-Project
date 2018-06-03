@@ -50,6 +50,7 @@ final class DisplaySectionViewController: UIViewController {
     }
     
     //---- Miscellaneous ----//
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -104,7 +105,7 @@ extension DisplaySectionViewController: AdvertisementDataSourceDelegate {
 
 extension DisplaySectionViewController: Likeable {
     
-    func didTapLikeButton(_ likeButton: UIButton, on cell: AdvertisementCell) {
+    func didTapLikeButton(_ likeButton: UIButton, on cell: UICollectionViewCell) {
         
         defer {
             likeButton.isUserInteractionEnabled = true
@@ -116,14 +117,11 @@ extension DisplaySectionViewController: Likeable {
             return
         }
         
-        let adLiked = dataSource.data(atIndex: indexPath.row)
+        let adSelected = dataSource.data(atIndex: indexPath.row)
         
-        if let favoritedAd = CoreDataHelper.fetchSelectedFavoriteAd(withKey: adLiked.key) {
-            dataSource.removeLike(for: favoritedAd)
-        } else {
-            dataSource.likeAdvertisement(for: adLiked)
+        dataSource.likeService.setLike(status: adSelected.isLiked, for: adSelected) { (success) in
+            
         }
-        
     }
     
 }

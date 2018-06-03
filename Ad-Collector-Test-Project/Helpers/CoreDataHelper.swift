@@ -23,28 +23,53 @@ struct CoreDataHelper {
         return context
     }()
     
-    static func newFavoriteAd() -> FavoriteAd {
-        let FavoriteAd = NSEntityDescription.insertNewObject(forEntityName: "FavoriteAd", into: context) as! FavoriteAd
-        
-        return FavoriteAd
+    static func newAdvertisement() -> Advertisement {
+        let advertisement = NSEntityDescription.insertNewObject(forEntityName: "Advertisement", into: context) as! Advertisement
+        return advertisement
     }
     
-    static func save()  {
+    static func save() {
         do {
             try context.save()
         } catch let error {
-            print("Could not save \(error.localizedDescription)")
+            print("\(error.localizedDescription)")
         }
     }
     
-    static func delete(ad: FavoriteAd){
-        context.delete(ad)
-        save()
+    static func purgeOutdatedData() {
+        let purgeDate = Date().addingTimeInterval(-60 * 60 * 24 * 7) // One week
+        let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+        // Only purge outdated data that is not liked
+        request.predicate = NSPredicate(format: "isLiked == NO")
+        
+        do {
+            let results = try context.fetch(request)
+            
+            for object in results {
+                
+                guard let timestamp = object.timestamp else {
+                    return
+                }
+                
+                if timestamp < purgeDate {
+                    context.delete(object)
+                }
+            }
+            
+        } catch let error {
+            print("\(error.localizedDescription)")
+        }
     }
     
-    static func retrieveFavoriteAds() -> [FavoriteAd] {
+    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
+        context.delete(advertisement)
+    }
+    
+    //---- Fetch ----//
+    
+    static func retrieveAdvertisements() -> [Advertisement] {
         do {
-            let fetchRequest = NSFetchRequest<FavoriteAd>(entityName: "FavoriteAd")
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
             let results = try context.fetch(fetchRequest)
             return results
         } catch let error {
@@ -53,27 +78,29 @@ struct CoreDataHelper {
         }
     }
     
-    static func fetchSelectedFavoriteAd(withKey key: String) -> FavoriteAd? {
+    static func fetchLikedAdvertisements() -> [Advertisement] {
         do {
-            let fetchRequest = NSFetchRequest<FavoriteAd>(entityName: "FavoriteAd")
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+            fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
+            
             let results = try context.fetch(fetchRequest)
-            
-            var output: FavoriteAd?
-            
-            results.forEach() { (ad) in
-                if ad.key == key {
-                    output = ad
-                }
-            }
-            
-            return output
-            
+            return results
+        } catch let error {
+            print("Could not fetch \(error.localizedDescription)")
+            return[]
+        }
+    }
+    
+    static func fetchAdvertisement(withKey key: String) -> Advertisement? {
+        do {
+            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+            fetchRequest.predicate = NSPredicate(format: "key = %@", key)
+            let results = try context.fetch(fetchRequest).first
+            return results
         } catch let error {
             print("Could not fetch \(error.localizedDescription)")
             return nil
         }
     }
+    
 }
-
-
-

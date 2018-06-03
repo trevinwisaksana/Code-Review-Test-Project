@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i0f-eP-zUw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i0f-eP-zUw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -330,6 +330,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2F-ip-Fu9">
                                                             <rect key="frame" x="250" y="19.5" width="125" height="24"/>
                                                             <state key="normal" image="btn_heart_black_outline"/>
+                                                            <state key="selected" image="btn_heart_red_solid"/>
                                                             <connections>
                                                                 <action selector="didPressLikeButton:" destination="Cu9-JP-ycD" eventType="touchUpInside" id="B0l-v3-8vT"/>
                                                             </connections>
@@ -393,6 +394,7 @@
     </scenes>
     <resources>
         <image name="btn_heart_black_outline" width="24" height="24"/>
+        <image name="btn_heart_red_solid" width="24" height="24"/>
         <image name="chatIcon(small)" width="25" height="25"/>
         <image name="closeButtonIcon" width="42" height="42"/>
         <image name="location_pin_icon" width="12" height="12"/>

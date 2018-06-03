@@ -6,7 +6,8 @@
 //  Copyright © 2018 Trevin Wisaksana. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 protocol AdvertisementDataSourceDelegate: class {
     func contentChange()
@@ -17,7 +18,6 @@ final class AdvertisementViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    
     var advertisementService: AdvertisementService
     var likeService: LikeService
     
@@ -41,8 +41,12 @@ final class AdvertisementViewModel {
     //---- Most Popular Content ----//
     
     fileprivate var mostPopularContent: [Advertisement] {
-        let popularContent = content.filter { (advertisement) -> Bool in
+        var popularContent = content.filter { (advertisement) -> Bool in
             advertisement.score > 0.9
+        }
+        
+        popularContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularContent
@@ -61,8 +65,12 @@ final class AdvertisementViewModel {
     
     // Used to be passed to the AdvertisementsVC
     fileprivate var popularCarsContent: [Advertisement] {
-        let popularCarsContent = carsContent.filter { (advertisement) -> Bool in
+        var popularCarsContent = carsContent.filter { (advertisement) -> Bool in
             advertisement.score > 0.32
+        }
+        
+        popularCarsContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularCarsContent
@@ -81,8 +89,12 @@ final class AdvertisementViewModel {
     
     // Used to be passed to the AdvertisementsVC
     fileprivate var popularRealEstateContent: [Advertisement] {
-        let popularRealEstateContent = realEstateContent.filter { (advertisement) -> Bool in
+        var popularRealEstateContent = realEstateContent.filter { (advertisement) -> Bool in
             advertisement.score > 0.7
+        }
+        
+        popularRealEstateContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularRealEstateContent
@@ -101,8 +113,12 @@ final class AdvertisementViewModel {
     
     // Used to be passed to the AdvertisementsVC
     fileprivate var popularBapContent: [Advertisement] {
-        let popularBapContent = bapContent.filter { (advertisement) -> Bool in
+        var popularBapContent = bapContent.filter { (advertisement) -> Bool in
             advertisement.score > 0.8
+        }
+        
+        popularBapContent.sort { (lhs, rhs) -> Bool in
+            return lhs.score > rhs.score
         }
         
         return popularBapContent
@@ -193,16 +209,6 @@ final class AdvertisementViewModel {
         default:
             fatalError("Error: unexpected section.")
         }
-    }
-    
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
-    }
-    
-    func likeAdvertisement(for ad: Advertisement?) {
-        likeService.saveToFavorite(ad)
     }
     
 }

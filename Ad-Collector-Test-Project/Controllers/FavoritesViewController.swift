@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class FavoritesViewController: UIViewController {
     
@@ -99,7 +100,9 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
 extension FavoritesViewController: AdvertisementDataSourceDelegate {
     
     func contentChange() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
 }
@@ -120,9 +123,17 @@ extension FavoritesViewController: Dislikeable {
         
         let adDisliked = dataSource.data(atIndex: indexPath.row)
         
-        dataSource.removeLike(for: adDisliked)
+        dataSource.likeService.unlike(adDisliked) { (success) in
+            self.reloadTimeline()
+        }
+    }
+    
+}
+
+extension FavoritesViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        reloadTimeline()
     }
     
 }

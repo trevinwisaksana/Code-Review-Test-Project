@@ -14,7 +14,6 @@ final class FavoriteAdViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    
     var likeService: LikeService
     
     //---- Initializer ----//
@@ -25,7 +24,7 @@ final class FavoriteAdViewModel {
     
     //---- Data Source ----//
     
-    private var content = CoreDataHelper.retrieveFavoriteAds() {
+    private var content = CoreDataHelper.fetchLikedAdvertisements() {
         didSet {
             delegate?.contentChange()
         }
@@ -39,18 +38,12 @@ final class FavoriteAdViewModel {
         return content.isEmpty
     }
     
-    func data(atIndex index: Int) -> FavoriteAd {
+    func data(atIndex index: Int) -> Advertisement {
         return content[index]
     }
     
     func fetchFavoriteAds() {
-        content = CoreDataHelper.retrieveFavoriteAds()
-    }
-    
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
+        content = CoreDataHelper.fetchLikedAdvertisements()
     }
     
 }

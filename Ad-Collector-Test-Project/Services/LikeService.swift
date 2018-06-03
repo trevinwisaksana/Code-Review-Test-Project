@@ -8,33 +8,48 @@
 
 import Foundation
 
-class LikeService {
+struct LikeService {
     
-    func saveToFavorite(_ data: Advertisement?) {
+    func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void) {
+        if isLiked {
+            unlike(advertisement, success: success)
+        } else {
+            like(advertisement, success: success)
+        }
+    }
+    
+    // TODO: Create an asynchronous approach
+    func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         
-        guard let data = data else {
+        guard let key = advertisement.key else {
             return
         }
         
-        let newFavoriteAd = CoreDataHelper.newFavoriteAd()
-        
-        newFavoriteAd.isFavorite = true
-        newFavoriteAd.location = data.location
-        newFavoriteAd.photoURL = data.photoURL
-        newFavoriteAd.title = data.title
-        
-        newFavoriteAd.price = Double(data.price)
-        newFavoriteAd.key = data.key
-        
+        guard let advertisement = CoreDataHelper.fetchAdvertisement(withKey: key) else {
+            success(false)
+            return
+        }
+
+        advertisement.isLiked = true
+
         CoreDataHelper.save()
+        success(true)
     }
     
-    func remove(_ data: FavoriteAd) {
-        if let key = data.key {
-            UserDefaults.standard.removeObject(forKey: "\(key)")
-            CoreDataHelper.delete(ad: data)
-            CoreDataHelper.save()
+    func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
+        guard let key = advertisement.key else {
+            return
         }
+        
+        guard let advertisement = CoreDataHelper.fetchAdvertisement(withKey: key) else {
+            success(false)
+            return
+        }
+        
+        advertisement.isLiked = false
+        
+        CoreDataHelper.save()
+        success(true)
     }
     
 }

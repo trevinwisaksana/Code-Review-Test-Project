@@ -13,7 +13,6 @@ final class DisplaySectionViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    
     var likeService: LikeService
     
     //---- Initializer ----//
@@ -55,16 +54,6 @@ final class DisplaySectionViewModel {
         default:
             fatalError("Error: unexpected type.")
         }
-    }
-    
-    //---- Like Service ----//
-    
-    func removeLike(for ad: FavoriteAd) {
-        likeService.remove(ad)
-    }
-    
-    func likeAdvertisement(for ad: Advertisement) {
-        likeService.saveToFavorite(ad)
     }
 
 }

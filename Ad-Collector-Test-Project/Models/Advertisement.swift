@@ -10,24 +10,21 @@ import Foundation
 import SwiftyJSON
 import CoreData
 
-final class Advertisement {
-
-    var title: String
-    var price: Int
-    var photoURL: String
-    var location: String
-    var key: String
-    var type: String
-    var score: Double
-
-    var isFavorite = false
-
-    init?(with json: JSON) {
-        guard let title = json["description"].string else {
+extension Advertisement {
+    
+    convenience init?(with json: JSON, isSaved: Bool) {
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "Advertisement", in: CoreDataHelper.context) else {
             return nil
         }
-
-        guard let price = json["price"]["value"].int else {
+        
+        if isSaved {
+            self.init(entity: entity, insertInto: CoreDataHelper.context)
+        } else {
+            self.init(entity: entity, insertInto: nil)
+        }
+        
+        guard let title = json["description"].string else {
             return nil
         }
 
@@ -42,21 +39,57 @@ final class Advertisement {
         guard let rawScoreResponseString = json["score"].string else {
             return nil
         }
-        
+
         guard let score = Double(rawScoreResponseString) else {
             return nil
         }
-
+        
         let key = json["id"].stringValue
-        let photoURL = json["image"]["url"].string ?? ""
+        let posterURL = json["image"]["url"].string ?? ""
+        let price = json["price"]["value"].doubleValue
 
         self.title = title
         self.price = price
         self.location = location
-        self.photoURL = photoURL
+        self.posterURL = posterURL
         self.key = key
         self.type = adType
         self.score = score
+        self.timestamp = Date()
     }
+    
+}
 
+extension Advertisement: UIActivityItemSource {
+    
+    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        let placeholder = "Share this advertisement"
+        return placeholder
+    }
+    
+    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
+        
+        let price = self.price
+        let title = self.title
+        let location = self.location
+        
+        let message =
+        """
+        Hi! Check this item in \(location!)!
+        
+        \(title!).
+        
+        The price is kr \(Int(price).decimalStyleString).
+        """
+        
+        switch activityType {
+        case UIActivityType.mail:
+            return message
+        case UIActivityType.message:
+            return message
+        default:
+            return message
+        }
+    }
+    
 }

@@ -10,6 +10,10 @@ import Foundation
 
 struct Constants {
     
+    struct Entity {
+        static let advertisement = "Advertisement"
+    }
+    
     struct UserDefaults {
         static let currentUser = "currentUser"
         static let uid = "uid"

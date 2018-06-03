@@ -8,17 +8,20 @@
 
 import UIKit
 import Reachability
+import CoreData
 
 final class AdvertisementsViewController: UIViewController {
     
     //---- Properties ----//
     
-    let dataSource = AdvertisementViewModel(adService: AdvertisementService(), likeService: LikeService())
+    private let dataSource = AdvertisementViewModel(adService: AdvertisementService(), likeService: LikeService())
     
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     private let reachabiltyHelper = ReachabilityHelper()
-    private let refreshControl = UIRefreshControl()
+    
+    private lazy var refreshControl = UIRefreshControl()
     private lazy var alertController = UIAlertController()
+    
     
     //---- Subivews ----//
     
@@ -28,6 +31,9 @@ final class AdvertisementsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CoreDataHelper.purgeOutdatedData()
+        
         configureActivityView()
         configureCollectionView()
         configureDataSource()
@@ -36,6 +42,7 @@ final class AdvertisementsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         dataSource.loadCachedAdvertisements { (_) in
             if self.activityView.isAnimating {
                 self.activityView.stopAnimating()
@@ -236,26 +243,22 @@ extension AdvertisementsViewController: UICollectionViewDelegate, UICollectionVi
         let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
         let displayAdVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayCurrentAd) as! DisplayAdViewController
         
-        var ad: Advertisement?
+        var adSelected: Advertisement
         
         switch indexPath.section {
         case 0:
-            ad = dataSource.mostPopularContentData(atIndex: indexPath.row)
+            adSelected = dataSource.mostPopularContentData(atIndex: indexPath.row)
         case 1:
-            ad = dataSource.carsContentData(atIndex: indexPath.row)
+            adSelected = dataSource.carsContentData(atIndex: indexPath.row)
         case 2:
-            ad = dataSource.bapContentData(atIndex: indexPath.row)
+            adSelected = dataSource.bapContentData(atIndex: indexPath.row)
         case 3:
-            ad = dataSource.realEstateContentData(atIndex: indexPath.row)
+            adSelected = dataSource.realEstateContentData(atIndex: indexPath.row)
         default:
-            break
+            fatalError("Section out of range.")
         }
         
-        guard let adData = ad else {
-            return
-        }
-        
-        displayAdVC.dataSource.load(adData)
+        displayAdVC.dataSource.content = adSelected
         
         present(displayAdVC, animated: true, completion: nil)
     }
@@ -286,7 +289,7 @@ extension AdvertisementsViewController: DisplayMoreAdsDelegate {
 
 extension AdvertisementsViewController: Likeable {
     
-    func didTapLikeButton(_ likeButton: UIButton, on cell: AdvertisementCell) {
+    func didTapLikeButton(_ likeButton: UIButton, on cell: UICollectionViewCell) {
         
         defer {
             likeButton.isUserInteractionEnabled = true
@@ -298,29 +301,28 @@ extension AdvertisementsViewController: Likeable {
             return
         }
         
-        var adLiked: Advertisement?
+        var adSelected: Advertisement
         
         switch indexPath.section {
         case 0:
-            adLiked = dataSource.mostPopularContentData(atIndex: indexPath.row)
+            adSelected = dataSource.mostPopularContentData(atIndex: indexPath.row)
         case 1:
-            adLiked = dataSource.carsContentData(atIndex: indexPath.row)
+            adSelected = dataSource.carsContentData(atIndex: indexPath.row)
         case 2:
-            adLiked = dataSource.bapContentData(atIndex: indexPath.row)
+            adSelected = dataSource.bapContentData(atIndex: indexPath.row)
         case 3:
-            adLiked = dataSource.realEstateContentData(atIndex: indexPath.row)
+            adSelected = dataSource.realEstateContentData(atIndex: indexPath.row)
         default:
-            break
+            fatalError("Section out of bounds.")
         }
         
-        if let key = adLiked?.key, let favoritedAd = CoreDataHelper.fetchSelectedFavoriteAd(withKey: key) {
-            dataSource.removeLike(for: favoritedAd)
-        } else {
-            dataSource.likeAdvertisement(for: adLiked)
+        dataSource.likeService.setLike(status: adSelected.isLiked, for: adSelected) { (success) in
+            
         }
     }
     
 }
+
 
 extension AdvertisementsViewController: NetworkStatusListener {
     

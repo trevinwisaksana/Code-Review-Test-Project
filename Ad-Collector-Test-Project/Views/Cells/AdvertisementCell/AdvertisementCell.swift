@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 protocol Likeable: class {
-    func didTapLikeButton(_ likeButton: UIButton, on cell: AdvertisementCell)
+    func didTapLikeButton(_ likeButton: UIButton, on cell: UICollectionViewCell)
 }
 
 
@@ -28,16 +28,15 @@ final class AdvertisementCell: UICollectionViewCell {
     private var adKey: String?
     
     func configure(_ data: Advertisement) {
-        if let isFavorite = UserDefaults.standard.object(forKey: "\(data.key)") as! Bool? {
-            likeButton.isSelected = isFavorite
-        }
-        
+        likeButton.isSelected = data.isLiked
         adKey = data.key
         titleLabel.text = data.title
         locationLabel.text = data.location
         priceLabel.text = "kr " + Int(data.price).decimalStyleString
         
-        configureImage(withURL: data.photoURL)
+        if let posterURL = data.posterURL {
+            configureImage(withURL: posterURL)
+        }
     }
     
     private func configureImage(withURL url: String) {
@@ -51,11 +50,6 @@ final class AdvertisementCell: UICollectionViewCell {
     
     @IBAction func didTapLikeButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        
-        if let key = adKey {
-            UserDefaults.standard.set(sender.isSelected, forKey: "\(key)")
-        }
-        
         delegate?.didTapLikeButton(sender, on: self)
     }
     
