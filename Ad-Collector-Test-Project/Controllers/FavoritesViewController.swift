@@ -50,6 +50,7 @@ final class FavoritesViewController: UIViewController {
     
     private func configureTableView() {
         tableView.register(FavoriteAdCell.self)
+        tableView.delegate = self
     }
     
     @objc
@@ -72,7 +73,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.separatorStyle = .none
         } else {
             tableView.separatorStyle = .singleLine
-            numOfSections            = 1
+            numOfSections = 1
             tableView.backgroundView = nil
         }
         
@@ -88,11 +89,23 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: FavoriteAdCell = tableView.dequeueReusableCell()
         cell.delegate = self
         cell.configure(ad)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(view.frame.height * 0.25)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Constants.Storyboard.advertisements, bundle: .main)
+        let displayAdVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displayCurrentAd) as! DisplayAdViewController
+        
+        let adSelected = dataSource.data(atIndex: indexPath.row)
+   
+        displayAdVC.dataSource.content = adSelected
+        
+        present(displayAdVC, animated: true, completion: nil)
     }
     
 }
@@ -126,14 +139,6 @@ extension FavoritesViewController: Dislikeable {
         dataSource.likeService.unlike(adDisliked) { (success) in
             self.reloadTimeline()
         }
-    }
-    
-}
-
-extension FavoritesViewController: NSFetchedResultsControllerDelegate {
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
     }
     
 }
