@@ -29,21 +29,32 @@ class AdvertisementService {
                 }
                 
                 let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: true) }
-                CoreDataHelper.save()
+                
+                CoreDataHelper.save { (success, error) in
+                    completion(advertisements, nil)
+                }
  
-                completion(advertisements, nil)
             case .failure(let error):
                 completion([Advertisement](), error)
             }
         }
     }
     
+    // Checks if the response has already by cached
     func retrieveCachedAds(completion: @escaping ([Advertisement], Error?) -> Void) {
-        // Checks if the response has already by cached
-        // Check the timestamp and see if it needs to be purged
-        let data = CoreDataHelper.retrieveAdvertisements()
-        if data.isEmpty {
-            fetchAdvertisements { (advertisement, error) in
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        CoreDataHelper.retrieveAdvertisements { (advertisements, error) in
+            if advertisements.isEmpty {
+                dispatchGroup.leave()
+            } else {
+                completion(advertisements, error)
+            }
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            self.fetchAdvertisements { (advertisement, error) in
                 if let error = error {
                     completion([Advertisement](), error)
                     return
@@ -51,8 +62,6 @@ class AdvertisementService {
                 
                 completion(advertisement, nil)
             }
-        } else {
-            completion(data, nil)
         }
         
     }

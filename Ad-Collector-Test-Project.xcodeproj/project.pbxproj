@@ -52,6 +52,7 @@
 		DDD3DB32205CB7D1000A29B3 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DB31205CB7D0000A29B3 /* Favorites.storyboard */; };
 		DDD3DB34205CB800000A29B3 /* Advertisements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DB33205CB800000A29B3 /* Advertisements.storyboard */; };
 		DDD5E49120BE830D00624684 /* Advertisement.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDD5E48F20BE830D00624684 /* Advertisement.xcdatamodeld */; };
+		DDECBA2120C52E7B00315853 /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDECBA2020C52E7B00315853 /* Callbacks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		DDD3DB31205CB7D0000A29B3 /* Favorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		DDD3DB33205CB800000A29B3 /* Advertisements.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Advertisements.storyboard; sourceTree = "<group>"; };
 		DDD5E49020BE830D00624684 /* Advertisement.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Advertisement.xcdatamodel; sourceTree = "<group>"; };
+		DDECBA2020C52E7B00315853 /* Callbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callbacks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 				DD14740C205DBB8F00FFFD3C /* ReachabilityHelper.swift */,
 				DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */,
 				DD147407205DACEF00FFFD3C /* Constants.swift */,
+				DDECBA2020C52E7B00315853 /* Callbacks.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				DD1473F5205D52E000FFFD3C /* AdvertisementCollectionView.swift in Sources */,
 				DD63B481205CD64800A7837E /* AdvertisementCell.swift in Sources */,
 				DD1473FE205D80CD00FFFD3C /* AdvertisementsSectionFooter.swift in Sources */,
+				DDECBA2120C52E7B00315853 /* Callbacks.swift in Sources */,
 				DD63B47F205CD4B800A7837E /* UICollectionView+Utility.swift in Sources */,
 				DD0841E320B5492600CD7940 /* AdImageCell.swift in Sources */,
 				DD1473F7205D65DB00FFFD3C /* AdvertisementsSectionHeader.swift in Sources */,

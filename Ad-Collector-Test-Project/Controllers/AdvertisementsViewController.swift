@@ -22,7 +22,6 @@ final class AdvertisementsViewController: UIViewController {
     private lazy var refreshControl = UIRefreshControl()
     private lazy var alertController = UIAlertController()
     
-    
     //---- Subivews ----//
     
     @IBOutlet weak var collectionView: AdvertisementCollectionView!
@@ -32,20 +31,30 @@ final class AdvertisementsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CoreDataHelper.purgeOutdatedData()
-        
         configureActivityView()
         configureCollectionView()
         configureDataSource()
         configureReachability()
+        
+        // TODO: Fix the flow of this purge
+//        CoreDataHelper.purgeOutdatedData { (success, _) in
+//            if success {
+//                DispatchQueue.main.async {
+//                    
+//                }
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         dataSource.loadCachedAdvertisements { (_) in
-            if self.activityView.isAnimating {
-                self.activityView.stopAnimating()
+            self.refresh()
+            
+            DispatchQueue.main.async {
+                if self.activityView.isAnimating {
+                    self.activityView.stopAnimating()
+                }
             }
         }
     }
@@ -88,8 +97,10 @@ final class AdvertisementsViewController: UIViewController {
     @objc
     private func reloadTimeline() {
         dataSource.loadAdvertisements { (error) in
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
+            DispatchQueue.main.async {
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
+                }
             }
         }
     }
@@ -267,8 +278,10 @@ extension AdvertisementsViewController: UICollectionViewDelegate, UICollectionVi
 
 extension AdvertisementsViewController: AdvertisementDataSourceDelegate {
     
-    func contentChange() {
-        collectionView.reloadData()
+    func refresh() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
 }

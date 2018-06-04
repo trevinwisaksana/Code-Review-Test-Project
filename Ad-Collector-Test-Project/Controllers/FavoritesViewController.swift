@@ -43,6 +43,7 @@ final class FavoritesViewController: UIViewController {
     //---- Data Sourece ----//
     
     func configureDataSource() {
+        dataSource.fetchFavoriteAds()
         dataSource.delegate = self
     }
     
@@ -112,7 +113,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension FavoritesViewController: AdvertisementDataSourceDelegate {
     
-    func contentChange() {
+    func refresh() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

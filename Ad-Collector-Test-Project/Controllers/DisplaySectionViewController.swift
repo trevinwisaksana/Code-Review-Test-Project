@@ -97,7 +97,7 @@ extension DisplaySectionViewController: UICollectionViewDelegate, UICollectionVi
 
 extension DisplaySectionViewController: AdvertisementDataSourceDelegate {
     
-    func contentChange() {
+    func refresh() {
         collectionView.reloadData()
     }
     

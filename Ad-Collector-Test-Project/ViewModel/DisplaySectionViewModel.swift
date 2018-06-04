@@ -25,7 +25,7 @@ final class DisplaySectionViewModel {
     
     fileprivate var content = [Advertisement]() {
         didSet {
-            delegate?.contentChange()
+            delegate?.refresh()
         }
     }
     

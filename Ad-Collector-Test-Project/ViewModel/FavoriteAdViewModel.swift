@@ -24,9 +24,9 @@ final class FavoriteAdViewModel {
     
     //---- Data Source ----//
     
-    private var content = CoreDataHelper.fetchLikedAdvertisements() {
+    private var content = [Advertisement]() {
         didSet {
-            delegate?.contentChange()
+            delegate?.refresh()
         }
     }
     
@@ -43,7 +43,13 @@ final class FavoriteAdViewModel {
     }
     
     func fetchFavoriteAds() {
-        content = CoreDataHelper.fetchLikedAdvertisements()
+        CoreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
+            if let error = error {
+                // TODO: Error handling
+            } else {
+                self.content = advertisements
+            }
+        }
     }
     
 }
