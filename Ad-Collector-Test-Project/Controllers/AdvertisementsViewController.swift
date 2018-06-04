@@ -40,7 +40,7 @@ final class AdvertisementsViewController: UIViewController {
 //        CoreDataHelper.purgeOutdatedData { (success, _) in
 //            if success {
 //                DispatchQueue.main.async {
-//                    
+//
 //                }
 //            }
 //        }
