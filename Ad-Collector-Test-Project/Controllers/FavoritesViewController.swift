@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Reachability
 
 final class FavoritesViewController: UIViewController {
     

@@ -16,7 +16,6 @@ struct CoreDataHelper {
     
     static let persistentContainer: NSPersistentContainer = {
         let container = appDelegate.persistentContainer
-        container.viewContext.automaticallyMergesChangesFromParent = true
         
         return container
     }()
@@ -28,15 +27,23 @@ struct CoreDataHelper {
         return context
     }()
     
-    private static let backgroundContext: NSManagedObjectContext = {
-        var context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+    private static let privateContext: NSManagedObjectContext = {
+        var privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        privateContext.parent = context
+        privateContext.automaticallyMergesChangesFromParent = true
         
         return context
     }()
     
     static func save(success: @escaping SuccessOperationClosure) {
-        appDelegate.saveContext()
+        if context.hasChanges {
+            do {
+                try privateContext.save()
+                success(true, nil)
+            } catch let error {
+                success(false, error)
+            }
+        }
     }
     
     static func purgeOutdatedData(success: @escaping SuccessOperationClosure) {
@@ -46,9 +53,9 @@ struct CoreDataHelper {
         // Only purge outdated data that is not liked
         request.predicate = NSPredicate(format: "isLiked == NO")
         
-        backgroundContext.perform {
+        privateContext.perform {
             do {
-                let results = try backgroundContext.fetch(request)
+                let results = try privateContext.fetch(request)
                 
                 if results.isEmpty {
                     success(true, nil)
@@ -61,7 +68,7 @@ struct CoreDataHelper {
                     }
                     
                     if timestamp < purgeDate {
-                        backgroundContext.delete(object)
+                        privateContext.delete(object)
                     }
                 }
                 
@@ -77,10 +84,10 @@ struct CoreDataHelper {
     //---- Fetch ----//
     
     static func retrieveAdvertisements(completion: @escaping AdvertisementOperationClosure) {
-        backgroundContext.perform {
+        privateContext.perform {
             do {
                 let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-                let results = try backgroundContext.fetch(fetchRequest)
+                let results = try privateContext.fetch(fetchRequest)
                 completion(results, nil)
             } catch let error {
                 print("Could not fetch \(error.localizedDescription)")
@@ -90,19 +97,18 @@ struct CoreDataHelper {
     }
     
     static func fetchLikedAdvertisements(completion: @escaping AdvertisementOperationClosure) {
-        backgroundContext.perform {
+        privateContext.perform {
             do {
                 let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
                 fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
-                
-                let results = try backgroundContext.fetch(fetchRequest)
+
+                let results = try privateContext.fetch(fetchRequest)
                 completion(results, nil)
             } catch let error {
                 print("Could not fetch \(error.localizedDescription)")
                 completion([Advertisement](), error)
             }
         }
-        
     }
     
 }

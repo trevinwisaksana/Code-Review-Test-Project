@@ -37,7 +37,6 @@
 		DD739E832060993B00C4DBAB /* discover.json in Resources */ = {isa = PBXBuildFile; fileRef = DD739E822060993A00C4DBAB /* discover.json */; };
 		DD739E85206099A000C4DBAB /* DummyDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD739E84206099A000C4DBAB /* DummyDataFactory.swift */; };
 		DD739E8620609B6E00C4DBAB /* discover.json in Resources */ = {isa = PBXBuildFile; fileRef = DD739E822060993A00C4DBAB /* discover.json */; };
-		DD9BD2B120C3AAF20009DAF1 /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD9BD2AF20C3AAF20009DAF1 /* User.xcdatamodeld */; };
 		DDD3DAE3205C853D000A29B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3DAE2205C853D000A29B3 /* AppDelegate.swift */; };
 		DDD3DAE8205C853D000A29B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DAE6205C853D000A29B3 /* Main.storyboard */; };
 		DDD3DAEA205C853D000A29B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DAE9205C853D000A29B3 /* Assets.xcassets */; };
@@ -51,8 +50,8 @@
 		DDD3DB2B205CB75F000A29B3 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3DB2A205CB75F000A29B3 /* FavoritesViewController.swift */; };
 		DDD3DB32205CB7D1000A29B3 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DB31205CB7D0000A29B3 /* Favorites.storyboard */; };
 		DDD3DB34205CB800000A29B3 /* Advertisements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DB33205CB800000A29B3 /* Advertisements.storyboard */; };
-		DDD5E49120BE830D00624684 /* Advertisement.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDD5E48F20BE830D00624684 /* Advertisement.xcdatamodeld */; };
 		DDECBA2120C52E7B00315853 /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDECBA2020C52E7B00315853 /* Callbacks.swift */; };
+		DDECBA4920C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDECBA4720C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +98,6 @@
 		DD739E80206096C000C4DBAB /* DummyLikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyLikeService.swift; sourceTree = "<group>"; };
 		DD739E822060993A00C4DBAB /* discover.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = discover.json; sourceTree = "<group>"; };
 		DD739E84206099A000C4DBAB /* DummyDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDataFactory.swift; sourceTree = "<group>"; };
-		DD9BD2B020C3AAF20009DAF1 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		DDD3DADF205C853D000A29B3 /* Ad-Collector-Test-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ad-Collector-Test-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD3DAE2205C853D000A29B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDD3DAE7205C853D000A29B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,8 +115,8 @@
 		DDD3DB2A205CB75F000A29B3 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		DDD3DB31205CB7D0000A29B3 /* Favorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		DDD3DB33205CB800000A29B3 /* Advertisements.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Advertisements.storyboard; sourceTree = "<group>"; };
-		DDD5E49020BE830D00624684 /* Advertisement.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Advertisement.xcdatamodel; sourceTree = "<group>"; };
 		DDECBA2020C52E7B00315853 /* Callbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callbacks.swift; sourceTree = "<group>"; };
+		DDECBA4820C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ad-Collector-Test-Project.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,8 +238,7 @@
 				DDD3DB16205C8A09000A29B3 /* Extensions */,
 				DDD3DB35205CB807000A29B3 /* Storyboards */,
 				DDD3DAE9205C853D000A29B3 /* Assets.xcassets */,
-				DD9BD2AF20C3AAF20009DAF1 /* User.xcdatamodeld */,
-				DDD5E48F20BE830D00624684 /* Advertisement.xcdatamodeld */,
+				DDECBA4720C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodeld */,
 				DDD3DAEB205C853D000A29B3 /* LaunchScreen.storyboard */,
 				DD0841DC20B50E4700CD7940 /* GoogleService-Info.plist */,
 				DDD3DAEE205C853D000A29B3 /* Info.plist */,
@@ -315,8 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				DDD3DB1F205C8FAA000A29B3 /* AdvertisementViewModel.swift */,
-				DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */,
 				DD147401205D865000FFFD3C /* DisplaySectionViewModel.swift */,
+				DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */,
 				DD0841E020B51E7A00CD7940 /* DisplayAdViewModel.swift */,
 			);
 			path = ViewModel;
@@ -575,13 +572,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDECBA4920C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodeld in Sources */,
 				DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */,
 				DD147408205DACEF00FFFD3C /* Constants.swift in Sources */,
 				DD14740D205DBB8F00FFFD3C /* ReachabilityHelper.swift in Sources */,
 				DD0841DF20B5169700CD7940 /* DisplayAdViewController.swift in Sources */,
 				DDD3DB2B205CB75F000A29B3 /* FavoritesViewController.swift in Sources */,
 				DD1473F0205D205E00FFFD3C /* LikeService.swift in Sources */,
-				DDD5E49120BE830D00624684 /* Advertisement.xcdatamodeld in Sources */,
 				DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */,
 				DD147406205D9A3000FFFD3C /* DisplaySectionHeader.swift in Sources */,
 				DDD3DAE3205C853D000A29B3 /* AppDelegate.swift in Sources */,
@@ -591,7 +588,6 @@
 				DD0841E520B549A400CD7940 /* AdCaptionCell.swift in Sources */,
 				DDD3DB26205C90C8000A29B3 /* AdvertisementService.swift in Sources */,
 				DDD3DB18205C8BAD000A29B3 /* AdvertisementsViewController.swift in Sources */,
-				DD9BD2B120C3AAF20009DAF1 /* User.xcdatamodeld in Sources */,
 				DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */,
 				DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */,
 				DD147402205D865000FFFD3C /* DisplaySectionViewModel.swift in Sources */,
@@ -857,24 +853,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DD9BD2AF20C3AAF20009DAF1 /* User.xcdatamodeld */ = {
+		DDECBA4720C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DD9BD2B020C3AAF20009DAF1 /* User.xcdatamodel */,
+				DDECBA4820C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodel */,
 			);
-			currentVersion = DD9BD2B020C3AAF20009DAF1 /* User.xcdatamodel */;
-			path = User.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		DDD5E48F20BE830D00624684 /* Advertisement.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DDD5E49020BE830D00624684 /* Advertisement.xcdatamodel */,
-			);
-			currentVersion = DDD5E49020BE830D00624684 /* Advertisement.xcdatamodel */;
-			name = Advertisement.xcdatamodeld;
-			path = Storyboards/Advertisement.xcdatamodeld;
+			currentVersion = DDECBA4820C680FA00315853 /* Ad-Collector-Test-Project.xcdatamodel */;
+			path = "Ad-Collector-Test-Project.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -37,18 +37,18 @@ final class AdvertisementsViewController: UIViewController {
         configureReachability()
         
         // TODO: Fix the flow of this purge
-//        CoreDataHelper.purgeOutdatedData { (success, _) in
-//            if success {
-//                DispatchQueue.main.async {
-//
-//                }
-//            }
-//        }
+        CoreDataHelper.purgeOutdatedData { (success, _) in
+            if success {
+                DispatchQueue.main.async {
+
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dataSource.loadCachedAdvertisements { (_) in
+        dataSource.loadCachedAdvertisements { [unowned self] (_) in
             self.refresh()
             
             DispatchQueue.main.async {
