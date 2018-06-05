@@ -22,7 +22,6 @@ final class DisplayAdViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
     }
     
@@ -110,7 +109,9 @@ extension DisplayAdViewController: Shareable {
     
     func didTapShareButton() {
         
-        let advertisement = dataSource.content
+        guard let advertisement = dataSource.content else {
+            return
+        }
         
         let activityVC = UIActivityViewController(activityItems: [advertisement], applicationActivities: [])
         

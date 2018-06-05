@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol AdvertisementDataSourceDelegate: class {
-    func contentChange()
+    func refresh()
 }
 
 final class AdvertisementViewModel {
@@ -30,7 +30,7 @@ final class AdvertisementViewModel {
     
     fileprivate var content = [Advertisement]() {
         didSet {
-            delegate?.contentChange()
+            delegate?.refresh()
         }
     }
     

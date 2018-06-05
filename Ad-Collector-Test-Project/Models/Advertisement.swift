@@ -15,7 +15,7 @@ extension Advertisement {
     convenience init?(with json: JSON, isSaved: Bool) {
         
         guard let entity = NSEntityDescription.entity(forEntityName: "Advertisement", in: CoreDataHelper.context) else {
-            return nil
+            fatalError("Entity does not exist.")
         }
         
         if isSaved {

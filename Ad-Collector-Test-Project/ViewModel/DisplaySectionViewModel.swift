@@ -14,6 +14,7 @@ final class DisplaySectionViewModel {
     
     weak var delegate: AdvertisementDataSourceDelegate?
     var likeService: LikeService
+
     
     //---- Initializer ----//
     
@@ -25,7 +26,7 @@ final class DisplaySectionViewModel {
     
     fileprivate var content = [Advertisement]() {
         didSet {
-            delegate?.contentChange()
+            delegate?.refresh()
         }
     }
     
