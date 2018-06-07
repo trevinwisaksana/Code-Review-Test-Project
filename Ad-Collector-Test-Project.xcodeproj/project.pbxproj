@@ -15,6 +15,8 @@
 		DD0841E320B5492600CD7940 /* AdImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E220B5492600CD7940 /* AdImageCell.swift */; };
 		DD0841E520B549A400CD7940 /* AdCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E420B549A400CD7940 /* AdCaptionCell.swift */; };
 		DD0841E720B549E900CD7940 /* AdActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0841E620B549E900CD7940 /* AdActionCell.swift */; };
+		DD0E481A20C7BB3700666106 /* DummyCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E481920C7BB3700666106 /* DummyCoreDataHelper.swift */; };
+		DD0E481E20C8B75A00666106 /* FailableDummyDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E481D20C8B75A00666106 /* FailableDummyDataFactory.swift */; };
 		DD1473DC205CE5B700FFFD3C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */; };
 		DD1473E3205CFB4100FFFD3C /* FavoriteAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */; };
 		DD1473E5205CFD1100FFFD3C /* FavoriteAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */; };
@@ -35,7 +37,7 @@
 		DD739E7F206091DC00C4DBAB /* DummyAdvertisementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD739E7E206091DC00C4DBAB /* DummyAdvertisementService.swift */; };
 		DD739E81206096C000C4DBAB /* DummyLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD739E80206096C000C4DBAB /* DummyLikeService.swift */; };
 		DD739E832060993B00C4DBAB /* discover.json in Resources */ = {isa = PBXBuildFile; fileRef = DD739E822060993A00C4DBAB /* discover.json */; };
-		DD739E85206099A000C4DBAB /* DummyDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD739E84206099A000C4DBAB /* DummyDataFactory.swift */; };
+		DD739E85206099A000C4DBAB /* SuccessfulDummyDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD739E84206099A000C4DBAB /* SuccessfulDummyDataFactory.swift */; };
 		DD739E8620609B6E00C4DBAB /* discover.json in Resources */ = {isa = PBXBuildFile; fileRef = DD739E822060993A00C4DBAB /* discover.json */; };
 		DDD3DAE3205C853D000A29B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3DAE2205C853D000A29B3 /* AppDelegate.swift */; };
 		DDD3DAE8205C853D000A29B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD3DAE6205C853D000A29B3 /* Main.storyboard */; };
@@ -77,6 +79,8 @@
 		DD0841E220B5492600CD7940 /* AdImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdImageCell.swift; sourceTree = "<group>"; };
 		DD0841E420B549A400CD7940 /* AdCaptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCaptionCell.swift; sourceTree = "<group>"; };
 		DD0841E620B549E900CD7940 /* AdActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdActionCell.swift; sourceTree = "<group>"; };
+		DD0E481920C7BB3700666106 /* DummyCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCoreDataHelper.swift; sourceTree = "<group>"; };
+		DD0E481D20C8B75A00666106 /* FailableDummyDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailableDummyDataFactory.swift; sourceTree = "<group>"; };
 		DD1473DB205CE5B600FFFD3C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DD1473E2205CFB4100FFFD3C /* FavoriteAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdViewModel.swift; sourceTree = "<group>"; };
 		DD1473E4205CFD1100FFFD3C /* FavoriteAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAdCell.swift; sourceTree = "<group>"; };
@@ -97,7 +101,7 @@
 		DD739E7E206091DC00C4DBAB /* DummyAdvertisementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyAdvertisementService.swift; sourceTree = "<group>"; };
 		DD739E80206096C000C4DBAB /* DummyLikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyLikeService.swift; sourceTree = "<group>"; };
 		DD739E822060993A00C4DBAB /* discover.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = discover.json; sourceTree = "<group>"; };
-		DD739E84206099A000C4DBAB /* DummyDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDataFactory.swift; sourceTree = "<group>"; };
+		DD739E84206099A000C4DBAB /* SuccessfulDummyDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessfulDummyDataFactory.swift; sourceTree = "<group>"; };
 		DDD3DADF205C853D000A29B3 /* Ad-Collector-Test-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ad-Collector-Test-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD3DAE2205C853D000A29B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDD3DAE7205C853D000A29B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -253,7 +257,9 @@
 				DDD3DAF7205C853D000A29B3 /* Ad_Collector_Test_ProjectTests.swift */,
 				DD739E80206096C000C4DBAB /* DummyLikeService.swift */,
 				DD739E7E206091DC00C4DBAB /* DummyAdvertisementService.swift */,
-				DD739E84206099A000C4DBAB /* DummyDataFactory.swift */,
+				DD0E481920C7BB3700666106 /* DummyCoreDataHelper.swift */,
+				DD739E84206099A000C4DBAB /* SuccessfulDummyDataFactory.swift */,
+				DD0E481D20C8B75A00666106 /* FailableDummyDataFactory.swift */,
 				DDD3DAF9205C853D000A29B3 /* Info.plist */,
 			);
 			path = "Ad-Collector-Test-ProjectTests";
@@ -611,7 +617,9 @@
 				DD739E81206096C000C4DBAB /* DummyLikeService.swift in Sources */,
 				DD739E7F206091DC00C4DBAB /* DummyAdvertisementService.swift in Sources */,
 				DDD3DAF8205C853D000A29B3 /* Ad_Collector_Test_ProjectTests.swift in Sources */,
-				DD739E85206099A000C4DBAB /* DummyDataFactory.swift in Sources */,
+				DD0E481A20C7BB3700666106 /* DummyCoreDataHelper.swift in Sources */,
+				DD739E85206099A000C4DBAB /* SuccessfulDummyDataFactory.swift in Sources */,
+				DD0E481E20C8B75A00666106 /* FailableDummyDataFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

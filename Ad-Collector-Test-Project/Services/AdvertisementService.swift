@@ -10,9 +10,17 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class AdvertisementService {
+protocol AdvertisementServiceProtocol: class {
+    func fetchAdvertisements(completion: @escaping AdvertisementOperationClosure)
+    func retrieveCachedAds(completion: @escaping AdvertisementOperationClosure)
+    func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure)
+}
+
+class AdvertisementService: AdvertisementServiceProtocol {
     
     private let baseURL = URL(string: "https://gist.githubusercontent.com/3lvis/3799feea005ed49942dcb56386ecec2b/raw/63249144485884d279d55f4f3907e37098f55c74/discover.json")
+    
+    var coreDataHelper = CoreDataHelper()
     
     func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
         
@@ -50,7 +58,7 @@ class AdvertisementService {
     }
     
     // Checks if the response has already by cached
-    func retrieveCachedAds(completion: @escaping ([Advertisement], Error?) -> Void) {
+    func retrieveCachedAds(completion: @escaping AdvertisementOperationClosure) {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
@@ -73,6 +81,16 @@ class AdvertisementService {
             }
         }
         
+    }
+    
+    func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        CoreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
+            if let error = error {
+                completion([Advertisement](), error)
+            } else {
+                completion(advertisements, nil)
+            }
+        }
     }
     
 }

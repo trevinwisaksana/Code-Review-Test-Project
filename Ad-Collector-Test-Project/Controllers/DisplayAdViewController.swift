@@ -12,7 +12,7 @@ final class DisplayAdViewController: UIViewController {
     
     //---- Properties ----//
     
-    let dataSource = DisplayAdViewModel(service: LikeService())
+    let dataSource = DisplayAdViewModel()
     
     //---- IBOutlet ----//
     

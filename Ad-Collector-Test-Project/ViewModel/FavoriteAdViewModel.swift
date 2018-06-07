@@ -14,13 +14,9 @@ final class FavoriteAdViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    var likeService: LikeService
     
-    //---- Initializer ----//
-    
-    init(service: LikeService) {
-        self.likeService = service
-    }
+    var advertisementService = AdvertisementService()
+    var likeService = LikeService()
     
     //---- Data Source ----//
     
@@ -43,9 +39,10 @@ final class FavoriteAdViewModel {
     }
     
     func fetchFavoriteAds() {
-        CoreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
+        advertisementService.retrieveFavoriteAdvertisements { (advertisements, error) in
             if let error = error {
                 // TODO: Error handling
+                print("\(error.localizedDescription)")
             } else {
                 self.content = advertisements
             }

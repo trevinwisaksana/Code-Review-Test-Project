@@ -18,14 +18,15 @@ final class AdvertisementViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    var advertisementService: AdvertisementService
-    var likeService: LikeService
+    
+    var advertisementService: AdvertisementServiceProtocol
+    var likeService: LikeServiceProtocol
     
     //---- Initializer ----//
     
-    init(adService: AdvertisementService, likeService: LikeService) {
-        self.advertisementService = adService
+    init(likeService: LikeServiceProtocol = LikeService(), adService: AdvertisementServiceProtocol = AdvertisementService()) {
         self.likeService = likeService
+        self.advertisementService = adService
     }
     
     fileprivate var content = [Advertisement]() {
@@ -175,10 +176,6 @@ final class AdvertisementViewModel {
         advertisementService.fetchAdvertisements() { (advertisements, error) in
             if let error = error {
                 completion(error)
-                return
-            }
-            
-            if advertisements.isEmpty {
                 return
             }
             

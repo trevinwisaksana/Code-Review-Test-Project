@@ -13,12 +13,7 @@ final class DisplayAdViewModel {
     //---- Properties ----//
     
     var content: Advertisement!
-    var likeService: LikeService
     
-    //---- Initializer ----//
-    
-    init(service: LikeService) {
-        self.likeService = service
-    }
+    var likeService = LikeService()
  
 }

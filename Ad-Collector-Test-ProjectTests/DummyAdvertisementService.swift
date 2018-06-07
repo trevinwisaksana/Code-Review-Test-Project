@@ -10,20 +10,32 @@ import Foundation
 
 @testable import Ad_Collector_Test_Project
 
-class DummyAdvertisementService: AdvertisementService {
+class DummyAdvertisementService: AdvertisementServiceProtocol {
     
-    var data: [Advertisement]
+    let dummyCoreDataHelper: DummyCoreDataHelper
+    
+    init(coreDataHelper: DummyCoreDataHelper) {
+        self.dummyCoreDataHelper = coreDataHelper
+    }
+    
+    var data = [Advertisement]()
 
-    init(data: [Advertisement]) {
-        self.data = data
+    func retrieveCachedAds(completion: @escaping ([Advertisement], Error?) -> Void) {
+        dummyCoreDataHelper.retrieveAdvertisements { (advertisement, error) in
+            completion(advertisement, error)
+        }
     }
     
-    override func retrieveCachedAds(completion: @escaping ([Advertisement], Error?) -> Void) {
-        completion(data, nil)
+    func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
+        dummyCoreDataHelper.retrieveAdvertisements { (advertisement, error) in
+            completion(advertisement, error)
+        }
     }
     
-    override func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
-        completion(data, nil)
+    func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        dummyCoreDataHelper.retrieveAdvertisements { (advertisement, error) in
+            completion(advertisement, error)
+        }
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-struct CoreDataHelper {
+class CoreDataHelper {
     
     private static let appDelegate = UIApplication.shared.delegate as! AppDelegate
     

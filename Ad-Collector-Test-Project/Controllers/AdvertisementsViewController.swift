@@ -14,7 +14,7 @@ final class AdvertisementsViewController: UIViewController {
     
     //---- Properties ----//
     
-    private let dataSource = AdvertisementViewModel(adService: AdvertisementService(), likeService: LikeService())
+    private let dataSource = AdvertisementViewModel()
     
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     private let reachabiltyHelper = ReachabilityHelper()
@@ -293,7 +293,8 @@ extension AdvertisementsViewController: DisplayMoreAdsDelegate {
         let displaySectionVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displaySectionVC) as! DisplaySectionViewController
         
         let sectionData = dataSource.passData(fromSection: section)
-        displaySectionVC.dataSource.loadContent(sectionData)
+        
+        displaySectionVC.load(content: sectionData)
         
         present(displaySectionVC, animated: true, completion: nil)
     }

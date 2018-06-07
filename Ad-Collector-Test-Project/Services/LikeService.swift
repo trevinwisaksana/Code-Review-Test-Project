@@ -8,7 +8,13 @@
 
 import Foundation
 
-struct LikeService {
+protocol LikeServiceProtocol: class {
+     func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void)
+    func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void)
+    func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void)
+}
+
+class LikeService: LikeServiceProtocol {
     
     func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         if isLiked {
@@ -19,7 +25,6 @@ struct LikeService {
     }
     
     func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
-        
         advertisement.isLiked = true
 
         CoreDataHelper.save { (isSuccessful, error) in
@@ -28,7 +33,6 @@ struct LikeService {
     }
     
     func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
-        
         advertisement.isLiked = false
         
         CoreDataHelper.save { (isSuccessful, error) in

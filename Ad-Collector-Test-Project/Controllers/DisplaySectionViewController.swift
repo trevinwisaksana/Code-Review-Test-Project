@@ -12,11 +12,17 @@ final class DisplaySectionViewController: UIViewController {
     
     //---- Properties ----//
     
-    let dataSource = DisplaySectionViewModel(service: LikeService())
+    let dataSource = DisplaySectionViewModel()
     
     //---- Subviews ----//
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //---- Initializer ----//
+    
+    func load(content: [Advertisement]) {
+        dataSource.loadContent(content)
+    }
     
     //---- VC Lifecycle ----//
     

@@ -14,7 +14,7 @@ final class FavoritesViewController: UIViewController {
     
     //---- Properties ----//
     
-    let dataSource = FavoriteAdViewModel(service: LikeService())
+    let dataSource = FavoriteAdViewModel()
     
     //---- Subviews ----//
     

@@ -10,14 +10,22 @@ import Foundation
 
 @testable import Ad_Collector_Test_Project
 
-class DummyLikeService: LikeService {
+class DummyLikeService: LikeServiceProtocol {
     
-    override func remove(_ data: FavoriteAd) {
-        
+    func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void) {
+        if isLiked {
+            unlike(advertisement, success: success)
+        } else {
+            like(advertisement, success: success)
+        }
     }
     
-    override func saveToFavorite(_ data: Advertisement?) {
-        
+    func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
+        advertisement.isLiked = true
+    }
+    
+    func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
+        advertisement.isLiked = false
     }
     
 }
