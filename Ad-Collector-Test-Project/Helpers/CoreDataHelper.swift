@@ -12,94 +12,109 @@ import CoreData
 
 struct CoreDataHelper {
     
-    static let context: NSManagedObjectContext = {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError()
-        }
+    private static let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    static let persistentContainer: NSPersistentContainer = {
+        let container = appDelegate.persistentContainer
         
+        return container
+    }()
+    
+    let managedContext: NSManagedObjectContext = {
         let persistentContainer = appDelegate.persistentContainer
         let context = persistentContainer.viewContext
         
         return context
     }()
     
-    static func newAdvertisement() -> Advertisement {
-        let advertisement = NSEntityDescription.insertNewObject(forEntityName: "Advertisement", into: context) as! Advertisement
-        return advertisement
-    }
+    private let privateContext: NSManagedObjectContext = {
+        var privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        
+        privateContext.automaticallyMergesChangesFromParent = true
+        privateContext.parent = persistentContainer.viewContext
+        
+        return privateContext
+    }()
     
-    static func save() {
+    func save(success: @escaping SuccessOperationClosure) {
         do {
-            try context.save()
-        } catch let error {
-            print("\(error.localizedDescription)")
+            try privateContext.save()
+            managedContext.performAndWait {
+                do {
+                    try managedContext.save()
+                    success(true, nil)
+                } catch {
+                    fatalError("Failure to save context: \(error)")
+                }
+            }
+        } catch {
+            fatalError("Failure to save context: \(error)")
         }
     }
     
-    static func purgeOutdatedData() {
-        let purgeDate = Date().addingTimeInterval(-60 * 60 * 24 * 7) // One week
+    func purgeOutdatedData(success: @escaping SuccessOperationClosure) {
+        let purgeDate = Date().addingTimeInterval(-60 * 60 * 24) // One day
         let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+        
         // Only purge outdated data that is not liked
         request.predicate = NSPredicate(format: "isLiked == NO")
         
-        do {
-            let results = try context.fetch(request)
-            
-            for object in results {
+        privateContext.perform {
+            do {
+                let results = try self.managedContext.fetch(request)
                 
-                guard let timestamp = object.timestamp else {
+                if results.isEmpty {
+                    success(true, nil)
                     return
                 }
                 
-                if timestamp < purgeDate {
-                    context.delete(object)
+                for object in results {
+                    guard let timestamp = object.timestamp else {
+                        return
+                    }
+                    
+                    if timestamp < purgeDate {
+                        self.managedContext.delete(object)
+                    }
                 }
+                
+                self.save(success: success)
+                
+            } catch let error {
+                print("\(error.localizedDescription)")
+                success(false, error)
             }
-            
-        } catch let error {
-            print("\(error.localizedDescription)")
         }
-    }
-    
-    static func delete(_ advertisement: Advertisement, success: @escaping (Bool, Error?) -> Void) {
-        context.delete(advertisement)
+       
     }
     
     //---- Fetch ----//
     
-    static func retrieveAdvertisements() -> [Advertisement] {
-        do {
-            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch let error {
-            print("Could not fetch \(error.localizedDescription)")
-            return[]
+    func retrieveAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        privateContext.perform {
+            do {
+                let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+                let results = try self.managedContext.fetch(fetchRequest)
+                completion(results, nil)
+            } catch let error {
+                print("Could not fetch \(error.localizedDescription)")
+                completion([Advertisement](), error)
+            }
         }
     }
     
-    static func fetchLikedAdvertisements() -> [Advertisement] {
-        do {
-            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-            fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
-            
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch let error {
-            print("Could not fetch \(error.localizedDescription)")
-            return[]
-        }
-    }
-    
-    static func fetchAdvertisement(withKey key: String) -> Advertisement? {
-        do {
-            let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-            fetchRequest.predicate = NSPredicate(format: "key = %@", key)
-            let results = try context.fetch(fetchRequest).first
-            return results
-        } catch let error {
-            print("Could not fetch \(error.localizedDescription)")
-            return nil
+    func fetchLikedAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        privateContext.perform {
+            do {
+                let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
+                fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
+
+                let results = try self.managedContext.fetch(fetchRequest)
+                completion(results, nil)
+            } catch let error {
+                print("Could not fetch \(error.localizedDescription)")
+                completion([Advertisement](), error)
+            }
         }
     }
     

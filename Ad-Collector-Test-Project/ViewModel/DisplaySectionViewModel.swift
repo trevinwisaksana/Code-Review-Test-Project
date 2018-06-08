@@ -13,19 +13,14 @@ final class DisplaySectionViewModel {
     //---- Properties ----//
     
     weak var delegate: AdvertisementDataSourceDelegate?
-    var likeService: LikeService
     
-    //---- Initializer ----//
-    
-    init(service: LikeService) {
-        self.likeService = service
-    }
+    var likeService = LikeService()
     
     //---- Data Source ----//
     
     fileprivate var content = [Advertisement]() {
         didSet {
-            delegate?.contentChange()
+            delegate?.refresh()
         }
     }
     

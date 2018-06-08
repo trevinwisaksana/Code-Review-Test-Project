@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct LikeService {
+protocol LikeServiceProtocol: class {
+     func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void)
+    func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void)
+    func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void)
+}
+
+class LikeService: LikeServiceProtocol {
+    
+    var coreDataHelper = CoreDataHelper()
     
     func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         if isLiked {
@@ -18,38 +26,20 @@ struct LikeService {
         }
     }
     
-    // TODO: Create an asynchronous approach
     func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
-        
-        guard let key = advertisement.key else {
-            return
-        }
-        
-        guard let advertisement = CoreDataHelper.fetchAdvertisement(withKey: key) else {
-            success(false)
-            return
-        }
-
         advertisement.isLiked = true
-
-        CoreDataHelper.save()
-        success(true)
+        
+        coreDataHelper.save { (isSuccessful, error) in
+            success(isSuccessful)
+        }
     }
     
     func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
-        guard let key = advertisement.key else {
-            return
-        }
-        
-        guard let advertisement = CoreDataHelper.fetchAdvertisement(withKey: key) else {
-            success(false)
-            return
-        }
-        
         advertisement.isLiked = false
         
-        CoreDataHelper.save()
-        success(true)
+        coreDataHelper.save { (isSuccessful, error) in
+            success(isSuccessful)
+        }
     }
     
 }

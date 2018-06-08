@@ -14,14 +14,15 @@ final class AdvertisementsViewController: UIViewController {
     
     //---- Properties ----//
     
-    private let dataSource = AdvertisementViewModel(adService: AdvertisementService(), likeService: LikeService())
+    private let dataSource = AdvertisementViewModel()
     
-    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     private let reachabiltyHelper = ReachabilityHelper()
+    
+    var fetchResultsController: NSFetchedResultsController<Advertisement>!
     
     private lazy var refreshControl = UIRefreshControl()
     private lazy var alertController = UIAlertController()
-    
+    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     //---- Subivews ----//
     
@@ -32,20 +33,29 @@ final class AdvertisementsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CoreDataHelper.purgeOutdatedData()
-        
         configureActivityView()
         configureCollectionView()
         configureDataSource()
         configureReachability()
+        
+        // TODO: Fix the flow of purging outdated data
+//        dataSource.replaceOutdatedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Checks if outdated data is being replaced
+//        if !dataSource.isBeingLoaded {
+//
+//        }
         
-        dataSource.loadCachedAdvertisements { (_) in
-            if self.activityView.isAnimating {
-                self.activityView.stopAnimating()
+        dataSource.loadCachedAdvertisements { [unowned self] (_) in
+            self.refresh()
+            
+            DispatchQueue.main.async {
+                if self.activityView.isAnimating {
+                    self.activityView.stopAnimating()
+                }
             }
         }
     }
@@ -88,8 +98,10 @@ final class AdvertisementsViewController: UIViewController {
     @objc
     private func reloadTimeline() {
         dataSource.loadAdvertisements { (error) in
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
+            DispatchQueue.main.async {
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
+                }
             }
         }
     }
@@ -267,8 +279,10 @@ extension AdvertisementsViewController: UICollectionViewDelegate, UICollectionVi
 
 extension AdvertisementsViewController: AdvertisementDataSourceDelegate {
     
-    func contentChange() {
-        collectionView.reloadData()
+    func refresh() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
 }
@@ -280,7 +294,8 @@ extension AdvertisementsViewController: DisplayMoreAdsDelegate {
         let displaySectionVC = storyboard.instantiateViewController(withIdentifier: Constants.Identifier.displaySectionVC) as! DisplaySectionViewController
         
         let sectionData = dataSource.passData(fromSection: section)
-        displaySectionVC.dataSource.loadContent(sectionData)
+        
+        displaySectionVC.load(content: sectionData)
         
         present(displaySectionVC, animated: true, completion: nil)
     }
@@ -322,7 +337,6 @@ extension AdvertisementsViewController: Likeable {
     }
     
 }
-
 
 extension AdvertisementsViewController: NetworkStatusListener {
     

@@ -7,16 +7,25 @@
 //
 
 import UIKit
+import Reachability
 
 final class DisplaySectionViewController: UIViewController {
     
     //---- Properties ----//
     
-    let dataSource = DisplaySectionViewModel(service: LikeService())
+    let dataSource = DisplaySectionViewModel()
+    
+    private lazy var alertController = UIAlertController()
     
     //---- Subviews ----//
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //---- Initializer ----//
+    
+    func load(content: [Advertisement]) {
+        dataSource.loadContent(content)
+    }
     
     //---- VC Lifecycle ----//
     
@@ -97,8 +106,10 @@ extension DisplaySectionViewController: UICollectionViewDelegate, UICollectionVi
 
 extension DisplaySectionViewController: AdvertisementDataSourceDelegate {
     
-    func contentChange() {
-        collectionView.reloadData()
+    func refresh() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
 }
@@ -125,3 +136,38 @@ extension DisplaySectionViewController: Likeable {
     }
     
 }
+
+extension DisplaySectionViewController: NetworkStatusListener {
+    
+    func networkStatusDidChange(status: Reachability.Connection) {
+        switch status {
+        case .none:
+            displayErrorMessage()
+        case .cellular, .wifi:
+            break
+        }
+    }
+    
+    private func displayErrorMessage() {
+        alertController.title = "Network Error"
+        alertController.message = "You are not connected to the internet."
+        
+        present(alertController, animated: true) {
+            self.addAlertControllerTapGesture()
+        }
+    }
+    
+    private func addAlertControllerTapGesture() {
+        let selector = #selector(alertControllerTapGestureHandler)
+        let tapGesture = UITapGestureRecognizer(target: self, action: selector)
+        let alertControllerSubview = alertController.view.superview?.subviews[1]
+        alertControllerSubview?.isUserInteractionEnabled = true
+        alertControllerSubview?.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func alertControllerTapGestureHandler() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+

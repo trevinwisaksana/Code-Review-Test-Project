@@ -10,16 +10,30 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class AdvertisementService {
+protocol AdvertisementServiceProtocol: class {
+    func fetchAdvertisements(completion: @escaping AdvertisementOperationClosure)
+    func retrieveCachedAds(completion: @escaping AdvertisementOperationClosure)
+    func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure)
+    func removeOutdatedData(success: @escaping SuccessOperationClosure)
+}
+
+class AdvertisementService: AdvertisementServiceProtocol {
     
     private let baseURL = URL(string: "https://gist.githubusercontent.com/3lvis/3799feea005ed49942dcb56386ecec2b/raw/63249144485884d279d55f4f3907e37098f55c74/discover.json")
+    
+    var coreDataHelper = CoreDataHelper()
+    
+    //---- Fetching Advertisement ----//
     
     func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
         
         guard let url = baseURL else {
             return
         }
-    
+        
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 60
+        
         Alamofire.request(url).validate().responseJSON { (response) in
             switch response.result {
             case .success(let data):
@@ -29,21 +43,38 @@ class AdvertisementService {
                 }
                 
                 let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: true) }
-                CoreDataHelper.save()
+                
+                self.coreDataHelper.save { (success, error) in
+                    if let error = error {
+                        completion([Advertisement](), error)
+                        print("\(error.localizedDescription)")
+                        return
+                    }
+                    
+                    completion(advertisements, nil)
+                }
  
-                completion(advertisements, nil)
             case .failure(let error):
                 completion([Advertisement](), error)
             }
         }
     }
     
-    func retrieveCachedAds(completion: @escaping ([Advertisement], Error?) -> Void) {
-        // Checks if the response has already by cached
-        // Check the timestamp and see if it needs to be purged
-        let data = CoreDataHelper.retrieveAdvertisements()
-        if data.isEmpty {
-            fetchAdvertisements { (advertisement, error) in
+    // Checks if the response has already by cached
+    func retrieveCachedAds(completion: @escaping AdvertisementOperationClosure) {
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        coreDataHelper.retrieveAdvertisements { (advertisements, error) in
+            if advertisements.isEmpty {
+                dispatchGroup.leave()
+            } else {
+                completion(advertisements, error)
+            }
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            self.fetchAdvertisements { (advertisement, error) in
                 if let error = error {
                     completion([Advertisement](), error)
                     return
@@ -51,10 +82,24 @@ class AdvertisementService {
                 
                 completion(advertisement, nil)
             }
-        } else {
-            completion(data, nil)
         }
         
+    }
+    
+    func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        coreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
+            if let error = error {
+                completion([Advertisement](), error)
+            } else {
+                completion(advertisements, nil)
+            }
+        }
+    }
+    
+    func removeOutdatedData(success: @escaping SuccessOperationClosure) {
+        coreDataHelper.purgeOutdatedData { (isSuccessful, error) in
+            success(isSuccessful, error)
+        }
     }
     
 }
