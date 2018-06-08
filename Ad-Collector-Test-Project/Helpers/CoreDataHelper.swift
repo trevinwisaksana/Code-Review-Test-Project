@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class CoreDataHelper {
+struct CoreDataHelper {
     
     private static let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -20,33 +20,39 @@ class CoreDataHelper {
         return container
     }()
     
-    static let context: NSManagedObjectContext = {
+    let managedContext: NSManagedObjectContext = {
         let persistentContainer = appDelegate.persistentContainer
         let context = persistentContainer.viewContext
         
         return context
     }()
     
-    private static let privateContext: NSManagedObjectContext = {
+    private let privateContext: NSManagedObjectContext = {
         var privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        privateContext.parent = context
-        privateContext.automaticallyMergesChangesFromParent = true
         
-        return context
+        privateContext.automaticallyMergesChangesFromParent = true
+        privateContext.parent = persistentContainer.viewContext
+        
+        return privateContext
     }()
     
-    static func save(success: @escaping SuccessOperationClosure) {
-        if context.hasChanges {
-            do {
-                try privateContext.save()
-                success(true, nil)
-            } catch let error {
-                success(false, error)
+    func save(success: @escaping SuccessOperationClosure) {
+        do {
+            try privateContext.save()
+            managedContext.performAndWait {
+                do {
+                    try managedContext.save()
+                    success(true, nil)
+                } catch {
+                    fatalError("Failure to save context: \(error)")
+                }
             }
+        } catch {
+            fatalError("Failure to save context: \(error)")
         }
     }
     
-    static func purgeOutdatedData(success: @escaping SuccessOperationClosure) {
+    func purgeOutdatedData(success: @escaping SuccessOperationClosure) {
         let purgeDate = Date().addingTimeInterval(-60 * 60 * 24) // One day
         let request = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
         
@@ -55,7 +61,7 @@ class CoreDataHelper {
         
         privateContext.perform {
             do {
-                let results = try privateContext.fetch(request)
+                let results = try self.managedContext.fetch(request)
                 
                 if results.isEmpty {
                     success(true, nil)
@@ -68,11 +74,12 @@ class CoreDataHelper {
                     }
                     
                     if timestamp < purgeDate {
-                        privateContext.delete(object)
+                        self.managedContext.delete(object)
                     }
                 }
                 
-                success(true, nil)
+                self.save(success: success)
+                
             } catch let error {
                 print("\(error.localizedDescription)")
                 success(false, error)
@@ -83,11 +90,11 @@ class CoreDataHelper {
     
     //---- Fetch ----//
     
-    static func retrieveAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+    func retrieveAdvertisements(completion: @escaping AdvertisementOperationClosure) {
         privateContext.perform {
             do {
                 let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-                let results = try privateContext.fetch(fetchRequest)
+                let results = try self.managedContext.fetch(fetchRequest)
                 completion(results, nil)
             } catch let error {
                 print("Could not fetch \(error.localizedDescription)")
@@ -96,13 +103,13 @@ class CoreDataHelper {
         }
     }
     
-    static func fetchLikedAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+    func fetchLikedAdvertisements(completion: @escaping AdvertisementOperationClosure) {
         privateContext.perform {
             do {
                 let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
                 fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
 
-                let results = try privateContext.fetch(fetchRequest)
+                let results = try self.managedContext.fetch(fetchRequest)
                 completion(results, nil)
             } catch let error {
                 print("Could not fetch \(error.localizedDescription)")

@@ -38,4 +38,8 @@ class DummyAdvertisementService: AdvertisementServiceProtocol {
         }
     }
     
+    func removeOutdatedData(success: @escaping SuccessOperationClosure) {
+        
+    }
+    
 }

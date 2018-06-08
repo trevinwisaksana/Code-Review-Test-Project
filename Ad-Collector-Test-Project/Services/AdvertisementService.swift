@@ -14,6 +14,7 @@ protocol AdvertisementServiceProtocol: class {
     func fetchAdvertisements(completion: @escaping AdvertisementOperationClosure)
     func retrieveCachedAds(completion: @escaping AdvertisementOperationClosure)
     func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure)
+    func removeOutdatedData(success: @escaping SuccessOperationClosure)
 }
 
 class AdvertisementService: AdvertisementServiceProtocol {
@@ -21,6 +22,8 @@ class AdvertisementService: AdvertisementServiceProtocol {
     private let baseURL = URL(string: "https://gist.githubusercontent.com/3lvis/3799feea005ed49942dcb56386ecec2b/raw/63249144485884d279d55f4f3907e37098f55c74/discover.json")
     
     var coreDataHelper = CoreDataHelper()
+    
+    //---- Fetching Advertisement ----//
     
     func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
         
@@ -41,7 +44,7 @@ class AdvertisementService: AdvertisementServiceProtocol {
                 
                 let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: true) }
                 
-                CoreDataHelper.save { (success, error) in
+                self.coreDataHelper.save { (success, error) in
                     if let error = error {
                         completion([Advertisement](), error)
                         print("\(error.localizedDescription)")
@@ -62,7 +65,7 @@ class AdvertisementService: AdvertisementServiceProtocol {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        CoreDataHelper.retrieveAdvertisements { (advertisements, error) in
+        coreDataHelper.retrieveAdvertisements { (advertisements, error) in
             if advertisements.isEmpty {
                 dispatchGroup.leave()
             } else {
@@ -84,12 +87,18 @@ class AdvertisementService: AdvertisementServiceProtocol {
     }
     
     func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure) {
-        CoreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
+        coreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
             if let error = error {
                 completion([Advertisement](), error)
             } else {
                 completion(advertisements, nil)
             }
+        }
+    }
+    
+    func removeOutdatedData(success: @escaping SuccessOperationClosure) {
+        coreDataHelper.purgeOutdatedData { (isSuccessful, error) in
+            success(isSuccessful, error)
         }
     }
     

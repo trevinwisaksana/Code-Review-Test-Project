@@ -16,6 +16,8 @@ protocol LikeServiceProtocol: class {
 
 class LikeService: LikeServiceProtocol {
     
+    var coreDataHelper = CoreDataHelper()
+    
     func setLike(status isLiked: Bool, for advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         if isLiked {
             unlike(advertisement, success: success)
@@ -26,8 +28,8 @@ class LikeService: LikeServiceProtocol {
     
     func like(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         advertisement.isLiked = true
-
-        CoreDataHelper.save { (isSuccessful, error) in
+        
+        coreDataHelper.save { (isSuccessful, error) in
             success(isSuccessful)
         }
     }
@@ -35,7 +37,7 @@ class LikeService: LikeServiceProtocol {
     func unlike(_ advertisement: Advertisement, success: @escaping (Bool) -> Void) {
         advertisement.isLiked = false
         
-        CoreDataHelper.save { (isSuccessful, error) in
+        coreDataHelper.save { (isSuccessful, error) in
             success(isSuccessful)
         }
     }

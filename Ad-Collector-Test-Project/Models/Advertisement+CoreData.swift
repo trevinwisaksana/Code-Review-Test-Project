@@ -1,5 +1,5 @@
 //
-//  Advertisement.swift
+//  Advertisement+CoreData.swift
 //  Ad-Collector-Test-Project
 //
 //  Created by Trevin Wisaksana on 17/03/2018.
@@ -14,12 +14,12 @@ extension Advertisement {
     
     convenience init?(with json: JSON, isSaved: Bool) {
         
-        guard let entity = NSEntityDescription.entity(forEntityName: "Advertisement", in: CoreDataHelper.context) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Advertisement", in: CoreDataHelper.persistentContainer.viewContext) else {
             fatalError("Entity does not exist.")
         }
         
         if isSaved {
-            self.init(entity: entity, insertInto: CoreDataHelper.context)
+            self.init(entity: entity, insertInto: CoreDataHelper.persistentContainer.viewContext)
         } else {
             self.init(entity: entity, insertInto: nil)
         }
@@ -44,8 +44,12 @@ extension Advertisement {
             return nil
         }
         
+        guard let posterURL = json["image"]["url"].string else {
+            return nil
+        }
+        
         let key = json["id"].stringValue
-        let posterURL = json["image"]["url"].string ?? ""
+        
         let price = json["price"]["value"].doubleValue
 
         self.title = title

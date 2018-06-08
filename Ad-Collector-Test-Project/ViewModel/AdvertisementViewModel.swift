@@ -22,6 +22,8 @@ final class AdvertisementViewModel {
     var advertisementService: AdvertisementServiceProtocol
     var likeService: LikeServiceProtocol
     
+    var isBeingLoaded = false
+    
     //---- Initializer ----//
     
     init(likeService: LikeServiceProtocol = LikeService(), adService: AdvertisementServiceProtocol = AdvertisementService()) {
@@ -193,6 +195,33 @@ final class AdvertisementViewModel {
             self.content = advertisement
             completion(nil)
         }
+    }
+    
+    func replaceOutdatedData() {
+        isBeingLoaded = true
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        advertisementService.removeOutdatedData { (isSuccessful, error) in
+            if let error = error {
+                print("\(error.localizedDescription)")
+                return
+            } else {
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            self.loadCachedAdvertisements { (error) in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                    return
+                } else {
+                    self.isBeingLoaded = false
+                }
+            }
+        }
+
     }
     
     func passData(fromSection section: Int) -> [Advertisement] {

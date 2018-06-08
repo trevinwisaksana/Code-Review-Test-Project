@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Reachability
 
 final class DisplaySectionViewController: UIViewController {
     
     //---- Properties ----//
     
     let dataSource = DisplaySectionViewModel()
+    
+    private lazy var alertController = UIAlertController()
     
     //---- Subviews ----//
     
@@ -133,3 +136,38 @@ extension DisplaySectionViewController: Likeable {
     }
     
 }
+
+extension DisplaySectionViewController: NetworkStatusListener {
+    
+    func networkStatusDidChange(status: Reachability.Connection) {
+        switch status {
+        case .none:
+            displayErrorMessage()
+        case .cellular, .wifi:
+            break
+        }
+    }
+    
+    private func displayErrorMessage() {
+        alertController.title = "Network Error"
+        alertController.message = "You are not connected to the internet."
+        
+        present(alertController, animated: true) {
+            self.addAlertControllerTapGesture()
+        }
+    }
+    
+    private func addAlertControllerTapGesture() {
+        let selector = #selector(alertControllerTapGestureHandler)
+        let tapGesture = UITapGestureRecognizer(target: self, action: selector)
+        let alertControllerSubview = alertController.view.superview?.subviews[1]
+        alertControllerSubview?.isUserInteractionEnabled = true
+        alertControllerSubview?.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func alertControllerTapGestureHandler() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+

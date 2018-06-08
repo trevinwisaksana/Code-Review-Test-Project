@@ -16,11 +16,13 @@ final class AdvertisementsViewController: UIViewController {
     
     private let dataSource = AdvertisementViewModel()
     
-    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     private let reachabiltyHelper = ReachabilityHelper()
+    
+    var fetchResultsController: NSFetchedResultsController<Advertisement>!
     
     private lazy var refreshControl = UIRefreshControl()
     private lazy var alertController = UIAlertController()
+    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     //---- Subivews ----//
     
@@ -36,18 +38,17 @@ final class AdvertisementsViewController: UIViewController {
         configureDataSource()
         configureReachability()
         
-        // TODO: Fix the flow of this purge
-        CoreDataHelper.purgeOutdatedData { (success, _) in
-            if success {
-                DispatchQueue.main.async {
-
-                }
-            }
-        }
+        // TODO: Fix the flow of purging outdated data
+//        dataSource.replaceOutdatedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Checks if outdated data is being replaced
+//        if !dataSource.isBeingLoaded {
+//
+//        }
+        
         dataSource.loadCachedAdvertisements { [unowned self] (_) in
             self.refresh()
             
@@ -336,7 +337,6 @@ extension AdvertisementsViewController: Likeable {
     }
     
 }
-
 
 extension AdvertisementsViewController: NetworkStatusListener {
     

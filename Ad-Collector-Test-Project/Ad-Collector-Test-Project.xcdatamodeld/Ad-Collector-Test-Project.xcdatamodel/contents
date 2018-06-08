@@ -10,8 +10,13 @@
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="likedAdvertisement" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="class">
+        <relationship name="likedAdvertisements" toMany="YES" deletionRule="Nullify" destinationEntity="Advertisement" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Advertisement" positionX="-54" positionY="-18" width="128" height="178"/>
+        <element name="Advertisement" positionX="-54" positionY="-18" width="128" height="193"/>
+        <element name="User" positionX="124" positionY="-18" width="128" height="58"/>
     </elements>
 </model>
