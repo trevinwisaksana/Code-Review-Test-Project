@@ -37,18 +37,10 @@ final class AdvertisementsViewController: UIViewController {
         configureCollectionView()
         configureDataSource()
         configureReachability()
-        
-        // TODO: Fix the flow of purging outdated data
-//        dataSource.replaceOutdatedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Checks if outdated data is being replaced
-//        if !dataSource.isBeingLoaded {
-//
-//        }
-        
         dataSource.loadCachedAdvertisements { [unowned self] (_) in
             self.refresh()
             

@@ -175,7 +175,7 @@ final class AdvertisementViewModel {
     //---- Load Operation ----//
     
     func loadAdvertisements(completion: @escaping (Error?) -> Void) {
-        advertisementService.fetchAdvertisements() { (advertisements, error) in
+        advertisementService.updateAdvertisements() { (advertisements, error) in
             if let error = error {
                 completion(error)
                 return

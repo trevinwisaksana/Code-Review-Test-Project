@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ad-Collector-Test-Project/ViewModel/AdvertisementViewModel.swift"
-            timestampString = "550123144.328187"
+            timestampString = "550142420.824031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
@@ -26,7 +26,7 @@
                   moduleName = "Ad-Collector-Test-Project"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/ViewModel/AdvertisementViewModel.swift"
-                  timestampString = "550123144.560606"
+                  timestampString = "550142420.845768"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "215"
@@ -41,7 +41,7 @@
                   moduleName = "Ad-Collector-Test-Project"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/ViewModel/AdvertisementViewModel.swift"
-                  timestampString = "550123144.563849"
+                  timestampString = "550142420.850202"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "216"
@@ -58,61 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ad-Collector-Test-Project/Helpers/CoreDataHelper.swift"
-            timestampString = "550123144.328306"
+            timestampString = "550142420.824183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "purgeOutdatedData(success:)"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "retrieveAdvertisements(completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Ad-Collector-Test-Project/Services/AdvertisementService.swift"
-            timestampString = "550123144.328418"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "fetchAdvertisements(completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in Ad_Collector_Test_Project.AdvertisementService.fetchAdvertisements(completion: (Swift.Array&lt;Ad_Collector_Test_Project.Advertisement&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Ad-Collector-Test-Project"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Services/AdvertisementService.swift"
-                  timestampString = "550123144.580006"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "517">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; Swift.Optional&lt;Ad_Collector_Test_Project.Advertisement&gt; in closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in Ad_Collector_Test_Project.AdvertisementService.fetchAdvertisements(completion: (Swift.Array&lt;Ad_Collector_Test_Project.Advertisement&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Ad-Collector-Test-Project"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/trevinwisaksana/Documents/Developer/Job%20Application%20Projects/FINN.no/Test-Project-Review/Ad-Collector-Test-Project/Services/AdvertisementService.swift"
-                  timestampString = "550123144.583221"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "14">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

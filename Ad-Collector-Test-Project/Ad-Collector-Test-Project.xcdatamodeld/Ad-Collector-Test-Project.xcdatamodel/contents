@@ -16,7 +16,7 @@
         <relationship name="likedAdvertisements" toMany="YES" deletionRule="Nullify" destinationEntity="Advertisement" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Advertisement" positionX="-54" positionY="-18" width="128" height="193"/>
+        <element name="Advertisement" positionX="-54" positionY="-18" width="128" height="195"/>
         <element name="User" positionX="124" positionY="-18" width="128" height="58"/>
     </elements>
 </model>

@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol AdvertisementServiceProtocol: class {
+    func updateAdvertisements(completion: @escaping AdvertisementOperationClosure)
     func fetchAdvertisements(completion: @escaping AdvertisementOperationClosure)
     func retrieveCachedAds(completion: @escaping AdvertisementOperationClosure)
     func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure)
@@ -19,43 +20,73 @@ protocol AdvertisementServiceProtocol: class {
 
 class AdvertisementService: AdvertisementServiceProtocol {
     
+    //---- Properties -----//
+    
     private let baseURL = URL(string: "https://gist.githubusercontent.com/3lvis/3799feea005ed49942dcb56386ecec2b/raw/63249144485884d279d55f4f3907e37098f55c74/discover.json")
     
     var coreDataHelper = CoreDataHelper()
     
+    
     //---- Fetching Advertisement ----//
     
-    func fetchAdvertisements(completion: @escaping ([Advertisement], Error?) -> Void) {
-        
+    func fetchJSONData(completion: @escaping ([JSON], Error?) -> Void) {
         guard let url = baseURL else {
             return
         }
         
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 60
-        
+      
         Alamofire.request(url).validate().responseJSON { (response) in
             switch response.result {
             case .success(let data):
+                
                 guard let jsonArray = JSON(data)["items"].array else {
-                    completion([Advertisement](), nil)
+                    completion([JSON](), nil)
                     return
                 }
                 
-                let advertisements = jsonArray.compactMap { Advertisement(with: $0, isSaved: true) }
+                completion(jsonArray, nil)
                 
-                self.coreDataHelper.save { (success, error) in
-                    if let error = error {
-                        completion([Advertisement](), error)
-                        print("\(error.localizedDescription)")
-                        return
-                    }
-                    
-                    completion(advertisements, nil)
-                }
- 
             case .failure(let error):
-                completion([Advertisement](), error)
+                completion([JSON](), error)
+            }
+        }
+        
+    }
+    
+    func fetchAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        var jsonData = [JSON]()
+        
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        fetchJSONData { (data, error) in
+            jsonData = data
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            self.coreDataHelper.saveJSON(data: jsonData) { (advertisements, error) in
+                completion(advertisements, error)
+            }
+        }
+        
+    }
+    
+    func updateAdvertisements(completion: @escaping AdvertisementOperationClosure) {
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        coreDataHelper.purgeData { (isSuccessful, error) in
+            if error == nil {
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .global()) {
+            self.fetchAdvertisements { (advertisements, error) in
+                completion(advertisements, error)
             }
         }
     }
@@ -87,7 +118,7 @@ class AdvertisementService: AdvertisementServiceProtocol {
     }
     
     func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure) {
-        coreDataHelper.fetchLikedAdvertisements { (advertisements, error) in
+        coreDataHelper.retrieveLikedAdvertisements { (advertisements, error) in
             if let error = error {
                 completion([Advertisement](), error)
             } else {
