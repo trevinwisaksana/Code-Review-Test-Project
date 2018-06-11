@@ -202,12 +202,11 @@ final class AdvertisementViewModel {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        advertisementService.removeOutdatedData { (isSuccessful, error) in
-            if let error = error {
-                print("\(error.localizedDescription)")
-                return
-            } else {
+        advertisementService.removeOutdatedData { (isSuccessful) in
+            if isSuccessful {
                 dispatchGroup.leave()
+            } else {
+                return
             }
         }
         

@@ -72,7 +72,7 @@ struct CoreDataHelper {
             managedContext.performAndWait {
                 do {
                     try managedContext.save()
-                    success(true, nil)
+                    success(true)
                 } catch {
                     fatalError("Failure to save context: \(error)")
                 }
@@ -101,9 +101,9 @@ struct CoreDataHelper {
         privateContext.perform {
             do {
                 try self.persistentStoreCoordinator.execute(deleteRequest, with: self.managedContext)
-                success(true, nil)
-            } catch let error as NSError {
-                success(false, error)
+                success(true)
+            } catch {
+                success(false)
             }
         }
        
@@ -120,15 +120,16 @@ struct CoreDataHelper {
         privateContext.perform {
             do {
                 try self.persistentStoreCoordinator.execute(deleteRequest, with: self.managedContext)
-                success(true, nil)
-            } catch let error as NSError {
-                success(false, error)
+                success(true)
+            } catch {
+                success(false)
             }
         }
     }
     
     //---- Fetch ----//
     
+    // TODO: Fix with object ID
     func isDuplicate(advertisement: Advertisement) -> Bool {
         guard let key = advertisement.key else {
             fatalError("Advertisement key does not exist.")
@@ -167,15 +168,69 @@ struct CoreDataHelper {
     func retrieveLikedAdvertisements(completion: @escaping AdvertisementOperationClosure) {
         privateContext.perform {
             do {
-                let fetchRequest = NSFetchRequest<Advertisement>(entityName: Constants.Entity.advertisement)
-                fetchRequest.predicate = NSPredicate(format: "isLiked == YES")
-
-                let results = try self.managedContext.fetch(fetchRequest)
+                let fetchRequest = NSFetchRequest<User>(entityName: Constants.Entity.user)
+                
+                guard let user = try self.managedContext.fetch(fetchRequest).first else {
+                    return
+                }
+                
+                let results = user.likedAdvertisements?.allObjects as! [Advertisement]
+                
                 completion(results, nil)
             } catch let error {
                 print("Could not fetch \(error.localizedDescription)")
                 completion([Advertisement](), error)
             }
+        }
+        
+    }
+    
+    //---- Testing ----//
+    
+    static func createUser() {
+        _ = NSEntityDescription.insertNewObject(forEntityName: "User", into: persistentContainer.viewContext) as! User
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+    }
+    
+    func addLiked(_ advertisement: Advertisement, success: @escaping SuccessOperationClosure) {
+        advertisement.isLiked = true
+        
+        do {
+            
+            let fetchRequest = NSFetchRequest<User>(entityName: Constants.Entity.user)
+            
+            guard let user = try self.managedContext.fetch(fetchRequest).first else {
+                return
+            }
+            
+            user.addToLikedAdvertisements(advertisement)
+            
+            save(success: success)
+        } catch let error {
+            print("Could not fetch \(error.localizedDescription)")
+        }
+    }
+    
+    func dislike(_ advertisement: Advertisement, success: @escaping SuccessOperationClosure) {
+        advertisement.isLiked = false
+        
+        do {
+            let fetchRequest = NSFetchRequest<User>(entityName: Constants.Entity.user)
+            
+            guard let user = try self.managedContext.fetch(fetchRequest).first else {
+                return
+            }
+            
+            user.removeFromLikedAdvertisements(advertisement)
+            
+            save(success: success)
+        } catch let error {
+            print("Could not fetch \(error.localizedDescription)")
         }
     }
     

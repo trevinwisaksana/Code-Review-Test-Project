@@ -71,15 +71,14 @@ class AdvertisementService: AdvertisementServiceProtocol {
                 completion(advertisements, error)
             }
         }
-        
     }
     
     func updateAdvertisements(completion: @escaping AdvertisementOperationClosure) {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        coreDataHelper.purgeData { (isSuccessful, error) in
-            if error == nil {
+        coreDataHelper.purgeData { (isSuccessful) in
+            if isSuccessful {
                 dispatchGroup.leave()
             }
         }
@@ -114,23 +113,14 @@ class AdvertisementService: AdvertisementServiceProtocol {
                 completion(advertisement, nil)
             }
         }
-        
     }
     
     func retrieveFavoriteAdvertisements(completion: @escaping AdvertisementOperationClosure) {
-        coreDataHelper.retrieveLikedAdvertisements { (advertisements, error) in
-            if let error = error {
-                completion([Advertisement](), error)
-            } else {
-                completion(advertisements, nil)
-            }
-        }
+        coreDataHelper.retrieveLikedAdvertisements(completion: completion)
     }
     
     func removeOutdatedData(success: @escaping SuccessOperationClosure) {
-        coreDataHelper.purgeOutdatedData { (isSuccessful, error) in
-            success(isSuccessful, error)
-        }
+        coreDataHelper.purgeData(success: success)
     }
     
 }
